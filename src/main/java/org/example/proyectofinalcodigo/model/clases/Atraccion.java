@@ -46,6 +46,7 @@ public class Atraccion implements IAccesible {
 
 
 
+
     @Override
     public boolean verificarAcceso(Visitante visitante) {
         if (estado != EstadoActual.ACTIVA) return false;
@@ -64,14 +65,49 @@ public class Atraccion implements IAccesible {
         return estado; }
 
 
-    public String registrarIngreso(Visitante visitante) {return null;}
+    public void verificarMantenimientoPreventivo() {
+        if (contadorVisitantes >= LIMITE_MANTENIMIENTO && estado == EstadoActual.ACTIVA) {
+            estado       = EstadoActual.EN_MANTENIMIENTO;
+            motivoCierre = MotivoCierre.REVISION_TECNICA;
+        }
+    }
+
+    public void incrementarContador() {
+        contadorVisitantes++;
+        actualizarTiempoEspera();
+        verificarMantenimientoPreventivo();
+    }
+
+    private void actualizarTiempoEspera() {
+        int enCola = colaVirtual.getTotalEnCola();
+        tiempoEspera = Math.max(2, (enCola / Math.max(1, capacidadMaxima)) * 5 + 3);
+    }
+    public int calcularTiempoEspera() { return tiempoEspera; }
+
+    public String registrarIngreso(Visitante visitante) {
+        if (!verificarAcceso(visitante))
+            return "Acceso denegado: atraccion no disponible estatura o edad insuficiente.";
+
+        if (costoAdicional > 0 && !visitante.tieneFastPass()) {
+            if (!visitante.descontarSaldo(costoAdicional))
+                return "Saldo insuficiente para el costo adicional ($" + costoAdicional + ").";
+        }
+
+        boolean esFast = visitante.tieneFastPass();
+        colaVirtual.agregarVisitante(visitante, esFast);
+        incrementarContador();
+
+        return "Acceso autorizado" + (esFast ? " [FAST-PASS]" : "")
+                + ". Tiempo de espera aprox: " + calcularTiempoEspera() + " min.";
+    }
+
 
     public String getId()         { return id; }
     public void   setId(String id)    { this.id = id; }
     public String getNombre()      { return nombre; }
     public void   setNombre(String nombre)    { this.nombre = nombre; }
     public TipoAtraccion getTipo()             { return tipo; }
-    public void   setTipo(TipoAtraccion tipo)     { this.tipo = tipo; }
+    public void   setTipo(TipoAtraccion tipo)    { this.tipo = tipo; }
     public int    getCapacidadMaxima()            { return capacidadMaxima; }
     public void   setCapacidadMaxima(int c)       { this.capacidadMaxima = c; }
     public double getAlturaMinima()               { return alturaMinima; }
@@ -91,4 +127,5 @@ public class Atraccion implements IAccesible {
     public ColaVirtual getColaVirtual()            { return colaVirtual; }
 
 }
+
 
