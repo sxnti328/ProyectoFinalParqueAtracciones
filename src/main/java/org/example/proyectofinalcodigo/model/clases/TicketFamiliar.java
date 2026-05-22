@@ -7,12 +7,12 @@ import java.time.LocalDate;
 
 public class TicketFamiliar extends Ticket {
     private int    numIntegrantes;
-    private String condicionesDescuento;
 
-    public TicketFamiliar(String id, TipoTicket tipo, double precio, boolean activo, LocalDate fechaCompra, int numIntegrantes, String condicionesDescuento) {
+
+    public TicketFamiliar(String id, TipoTicket tipo, double precio, boolean activo, LocalDate fechaCompra, int numIntegrantes) {
         super(id, tipo, precio, activo, fechaCompra);
         this.numIntegrantes = numIntegrantes;
-        this.condicionesDescuento = condicionesDescuento;
+
     }
 
     @Override
@@ -38,19 +38,13 @@ public class TicketFamiliar extends Ticket {
         this.numIntegrantes = numIntegrantes;
     }
 
-    public String getCondicionesDescuento() {
-        return condicionesDescuento;
-    }
 
-    public void setCondicionesDescuento(String condicionesDescuento) {
-        this.condicionesDescuento = condicionesDescuento;
-    }
+
+
 
     @Override
     public String toString() {
         return "TicketFamiliar{" +
-                "numIntegrantes=" + numIntegrantes +
-                ", condicionesDescuento='" + condicionesDescuento + '\'' +
-                '}';
+                "numIntegrantes=" + numIntegrantes ;
     }
 }
