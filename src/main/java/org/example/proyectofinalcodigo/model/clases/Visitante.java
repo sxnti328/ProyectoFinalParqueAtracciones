@@ -1,7 +1,7 @@
 package org.example.proyectofinalcodigo.model.clases;
 import org.example.proyectofinalcodigo.model.clasesAbstractas.Persona;
 import org.example.proyectofinalcodigo.model.clasesAbstractas.Ticket;
-import org.example.proyectofinalcodigo.model.record.Notificacion;
+import org.example.proyectofinalcodigo.model.records.Notificacion;
 
 import java.util.ArrayList;
 

@@ -1,6 +1,7 @@
 package org.example.proyectofinalcodigo.model.clases;
+import org.example.proyectofinalcodigo.model.enums.EstadoActual;
 import org.example.proyectofinalcodigo.model.interfaces.IGestionable;
-import org.example.proyectofinalcodigo.model.record.Notificacion;
+import org.example.proyectofinalcodigo.model.records.Notificacion;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -91,8 +92,10 @@ public class Zona implements IGestionable {
     public void desactivarAlertaClimatica() {
         for (Atraccion a : listAtraccion)
             if (a.getMotivoCierre() != null
-                    && a.getMotivoCierre().name().equals("CLIMA"))
-                a.setEstado(org.example.proyectofinalparque.model.enums.EstadoActual.ACTIVA);
+                    && a.getMotivoCierre().name().equals("CLIMA")) {
+                a.setEstado(EstadoActual.ACTIVA);
+                a.setMotivoCierre(null);
+            }
     }
 
     public boolean estaLlena() {

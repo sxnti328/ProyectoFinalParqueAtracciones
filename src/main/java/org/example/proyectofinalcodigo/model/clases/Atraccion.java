@@ -72,6 +72,16 @@ public class Atraccion implements IAccesible {
         }
     }
 
+    public boolean requiereCierreClimatico() {
+        return estado == EstadoActual.ACTIVA
+                && (tipo == TipoAtraccion.ACUATICA || tipo == TipoAtraccion.MECANICA_ALTURA);
+    }
+
+    public void cerrarPorClima() {
+        estado = EstadoActual.CERRADA;
+        motivoCierre = MotivoCierre.CLIMA;
+    }
+
     public void incrementarContador() {
         contadorVisitantes++;
         actualizarTiempoEspera();
@@ -100,6 +110,8 @@ public class Atraccion implements IAccesible {
         return "Acceso autorizado" + (esFast ? " [FAST-PASS]" : "")
                 + ". Tiempo de espera aprox: " + calcularTiempoEspera() + " min.";
     }
+
+
 
 
     public String getId()         { return id; }
