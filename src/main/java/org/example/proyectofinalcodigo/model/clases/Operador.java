@@ -1,6 +1,5 @@
 package org.example.proyectofinalcodigo.model.clases;
 
-public class Operador {
 import org.example.proyectofinalcodigo.model.clasesAbstractas.Empleado;
 
 public class Operador extends Empleado {

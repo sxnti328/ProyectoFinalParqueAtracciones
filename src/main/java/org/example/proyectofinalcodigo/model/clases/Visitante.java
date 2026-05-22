@@ -1,7 +1,4 @@
 package org.example.proyectofinalcodigo.model.clases;
-
-public class Visitante {
-}
 import org.example.proyectofinalcodigo.model.clasesAbstractas.Persona;
 
 public class Visitante extends Persona {

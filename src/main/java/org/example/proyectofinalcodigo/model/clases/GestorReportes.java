@@ -1,6 +1,11 @@
 package org.example.proyectofinalcodigo.model.clases;
 
 
+import org.example.proyectofinalcodigo.model.enums.EstadoActual;
+import org.example.proyectofinalcodigo.model.enums.MotivoCierre;
+
+import java.util.ArrayList;
+
 public class GestorReportes {
 
     private ParqueDeAtraccion parque;
