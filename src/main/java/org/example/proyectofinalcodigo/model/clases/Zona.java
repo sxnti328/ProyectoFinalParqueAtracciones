@@ -1,5 +1,6 @@
 package org.example.proyectofinalcodigo.model.clases;
 import org.example.proyectofinalcodigo.model.interfaces.IGestionable;
+import org.example.proyectofinalcodigo.model.record.Notificacion;
 
 import java.time.LocalDate;
 import java.util.ArrayList;

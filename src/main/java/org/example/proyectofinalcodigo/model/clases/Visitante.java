@@ -1,5 +1,9 @@
 package org.example.proyectofinalcodigo.model.clases;
 import org.example.proyectofinalcodigo.model.clasesAbstractas.Persona;
+import org.example.proyectofinalcodigo.model.clasesAbstractas.Ticket;
+import org.example.proyectofinalcodigo.model.record.Notificacion;
+
+import java.util.ArrayList;
 
 public class Visitante extends Persona {
 
@@ -8,7 +12,7 @@ public class Visitante extends Persona {
     private String telefono;
     private String direccion;
     private ArrayList<Ticket>  listTickets;
-    private ArrayList<String>  listaFavoritas;
+    private ArrayList<String> listaFavoritas;
     private ArrayList<Notificacion> listNotificaciones;
 
     public Visitante(String nombre, String documento, int edad,

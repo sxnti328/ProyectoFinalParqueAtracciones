@@ -1,10 +1,12 @@
 package org.example.proyectofinalcodigo.model.clases;
 
 
+import org.example.proyectofinalcodigo.model.clasesAbstractas.Ticket;
 import org.example.proyectofinalcodigo.model.enums.EstadoActual;
 import org.example.proyectofinalcodigo.model.enums.MotivoCierre;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class GestorReportes {
 
