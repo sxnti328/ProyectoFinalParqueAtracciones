@@ -5,75 +5,43 @@ import org.example.proyectofinalcodigo.model.enums.TipoTicket;
 import java.time.LocalDate;
 
 public abstract class Ticket {
-    protected String     id;
+    protected String id;
     protected TipoTicket tipo;
-    protected double     precio;
-    protected boolean    activo;
+    protected double  precio;
+    protected boolean  activo;
     protected LocalDate fechaCompra;
 
-    public Ticket(String id, TipoTicket tipo, double precio, boolean activo, LocalDate fechaCompra) {
+    public Ticket(String id, TipoTicket tipo, double precio) {
         this.id = id;
         this.tipo = tipo;
         this.precio = precio;
-        this.activo = activo;
-        this.fechaCompra = fechaCompra;
+        this.activo  = true;
+        this.fechaCompra = LocalDate.now();
     }
+
     public abstract double calcDescuento();
 
     public double getPrecioFinal() {
         return precio - calcDescuento();
-
-}
-
-
-
-    public String getId() {
-        return id;
     }
 
-    public void setId(String id) {
-        this.id = id;
-    }
+    public String getId() { return id; }
+    public void   setId(String id) { this.id = id; }
 
-    public TipoTicket getTipo() {
-        return tipo;
-    }
+    public TipoTicket getTipo() { return tipo; }
+    public void setTipo(TipoTicket tipo) { this.tipo = tipo; }
 
-    public void setTipo(TipoTicket tipo) {
-        this.tipo = tipo;
-    }
+    public double getPrecio() { return precio; }
+    public void  setPrecio(double precio) { this.precio = precio; }
 
-    public double getPrecio() {
-        return precio;
-    }
+    public boolean isActivo() { return activo; }
+    public void setActivo(boolean activo) { this.activo = activo; }
 
-    public void setPrecio(double precio) {
-        this.precio = precio;
-    }
-
-    public boolean isActivo() {
-        return activo;
-    }
-
-    public void setActivo(boolean activo) {
-        this.activo = activo;
-    }
-
-    public LocalDate getFechaCompra() {
-        return fechaCompra;
-    }
-
-    public void setFechaCompra(LocalDate fechaCompra) {
-        this.fechaCompra = fechaCompra;
-    }
+    public LocalDate getFechaCompra() { return fechaCompra; }
+    public void setFechaCompra(LocalDate fechaCompra) { this.fechaCompra = fechaCompra; }
 
     @Override
     public String toString() {
-        return "Ticket{" +
-                "id='" + id + '\'' +
-                ", tipo=" + tipo +
-                ", precio=" + precio +
-                ", activo=" + activo +
-                '}';
+        return "Ticket[" + tipo + " id=" + id + " precio=$" + precio + " activo=" + activo;
     }
 }

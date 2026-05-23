@@ -3,22 +3,19 @@ package org.example.proyectofinalcodigo.model.clases;
 import org.example.proyectofinalcodigo.model.clasesAbstractas.Ticket;
 import org.example.proyectofinalcodigo.model.enums.TipoTicket;
 
-import java.time.LocalDate;
-
 public class TicketFamiliar extends Ticket {
+
     private int    numIntegrantes;
+    private String condicionesDescuento;
 
-
-    public TicketFamiliar(String id, TipoTicket tipo, double precio, boolean activo, LocalDate fechaCompra, int numIntegrantes) {
-        super(id, tipo, precio, activo, fechaCompra);
-        this.numIntegrantes = numIntegrantes;
-
+    public TicketFamiliar(String id, double precio, int numIntegrantes, String condicionesDescuento) {
+        super(id, TipoTicket.FAMILIAR, precio);
+        this.numIntegrantes       = numIntegrantes;
+        this.condicionesDescuento = condicionesDescuento;
     }
 
     @Override
     public double calcDescuento() {
-        // El descuento depende del numero de integrantes
-        // 2 integrantes: 5%, 3: 10%, 4+: 15%
         double porcentaje;
         if (numIntegrantes <= 2) {
             porcentaje = 0.05;
@@ -30,21 +27,25 @@ public class TicketFamiliar extends Ticket {
         return precio * porcentaje;
     }
 
-    public int getNumIntegrantes() {
+    public int    getNumIntegrantes()  {
         return numIntegrantes;
     }
-
-    public void setNumIntegrantes(int numIntegrantes) {
-        this.numIntegrantes = numIntegrantes;
+    public void   setNumIntegrantes(int n){
+        this.numIntegrantes = n;
     }
 
-
-
-
+    public String getCondicionesDescuento()  {
+        return condicionesDescuento;
+    }
+    public void   setCondicionesDescuento(String c) {
+        this.condicionesDescuento = c;
+    }
 
     @Override
     public String toString() {
-        return "TicketFamiliar{" +
-                "numIntegrantes=" + numIntegrantes ;
+        double desc = calcDescuento();
+        return super.toString()
+                + " | Integrantes=" + numIntegrantes
+                + " | Descuento=" + (int)(desc / precio * 100) + "% ($" + desc + ")";
     }
 }
