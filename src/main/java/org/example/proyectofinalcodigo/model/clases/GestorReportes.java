@@ -13,6 +13,7 @@ public class GestorReportes {
     private ParqueDeAtraccion parque;
 
     public GestorReportes(ParqueDeAtraccion parque) {
+
         this.parque = parque;
     }
 
@@ -28,6 +29,7 @@ public class GestorReportes {
     }
 
     public String generarReporteDiario() {
+
         return generarReporte().formatearReporte();
     }
 
@@ -41,7 +43,7 @@ public class GestorReportes {
         return total;
     }
 
-    // ordena las atracciones de mayor a menor por visitantes (bubble sort sencillo)
+    // ordena las atracciones de mayor a menor por visitantes
     public List<Atraccion> getAtraccionesMasVisitadas() {
         List<Atraccion> todas = new ArrayList<>(parque.getTodasLasAtracciones());
         for (int i = 0; i < todas.size() - 1; i++) {

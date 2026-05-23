@@ -108,8 +108,10 @@ public class Visitante extends Persona {
         this.direccion = d; }
     public ArrayList<Ticket>       getListTickets()        {
         return listTickets; }
+
     public ArrayList<String>       getListaFavoritas()     {
         return listaFavoritas; }
+
     public ArrayList<Notificacion> getListNotificaciones() {
         return listNotificaciones; }
 

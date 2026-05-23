@@ -5,8 +5,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 
-public class ColaVirtual {
 
+public class ColaVirtual {
 
     private final Queue<Visitante> colaGeneral;
     private final Queue<Visitante> colaFastPass;
@@ -15,6 +15,7 @@ public class ColaVirtual {
         this.colaGeneral  = new LinkedList<>();
         this.colaFastPass = new LinkedList<>();
     }
+
 
     public void agregarVisitante(Visitante visitante, boolean esFastPass) {
         if (esFastPass) colaFastPass.offer(visitante);

@@ -33,23 +33,32 @@ public class ParqueDeAtraccion {
 
 
     public boolean agregarVisitante(Visitante v) {
-        if (visitantesActuales >= capacidadMax) return false;
-        if (buscarVisitante(v.getDocumento()) != null) return false;
+        if (visitantesActuales >= capacidadMax){
+            return false;
+        }
+        if (buscarVisitante(v.getDocumento()) != null){
+            return false;
+        }
         listVisitante.add(v);
         visitantesActuales++;
         return true;
     }
 
     public Visitante buscarVisitante(String documento) {
-        for (Visitante v : listVisitante)
-            if (v.getDocumento().equals(documento)) return v;
+        for (Visitante v : listVisitante) {
+            if (v.getDocumento().equals(documento)) {
+                return v;
+            }
+        }
         return null;
     }
 
     public boolean actualizarVisitante(String documento, String nombre, int edad,
                                        double estatura, String telefono, String direccion) {
         Visitante v = buscarVisitante(documento);
-        if (v == null) return false;
+        if (v == null){
+            return false;
+        }
         v.setNombre(nombre);
         v.setEdad(edad);
         v.setEstatura(estatura);
@@ -60,7 +69,9 @@ public class ParqueDeAtraccion {
 
     public boolean eliminarVisitante(String documento) {
         Visitante v = buscarVisitante(documento);
-        if (v == null) return false;
+        if (v == null){
+            return false;
+        }
         listVisitante.remove(v);
         visitantesActuales--;
         return true;
@@ -68,48 +79,66 @@ public class ParqueDeAtraccion {
 
 
     public boolean agregarAdministrador(Administrador a) {
-        if (buscarAdministrador(a.getDocumento()) != null) return false;
+        if (buscarAdministrador(a.getDocumento()) != null){
+            return false;
+        }
         listAdmin.add(a);
         return true;
     }
 
     public Administrador buscarAdministrador(String documento) {
-        for (Administrador a : listAdmin)
-            if (a.getDocumento().equals(documento)) return a;
+        for (Administrador a : listAdmin) {
+            if (a.getDocumento().equals(documento)) {
+                return a;
+            }
+        }
         return null;
     }
 
     public boolean eliminarAdministrador(String documento) {
         Administrador a = buscarAdministrador(documento);
-        if (a == null) return false;
+        if (a == null) {
+            return false;
+        }
         listAdmin.remove(a);
         return true;
     }
 
 
     public boolean agregarOperador(Operador o) {
-        if (buscarOperador(o.getDocumento()) != null) return false;
+        if (buscarOperador(o.getDocumento()) != null){
+            return false;
+        }
         listOperador.add(o);
         return true;
     }
 
     public Operador buscarOperador(String documento) {
-        for (Operador o : listOperador)
-            if (o.getDocumento().equals(documento)) return o;
+        for (Operador o : listOperador){
+            if (o.getDocumento().equals(documento)) {
+                return o;
+            }
+        }
+
         return null;
     }
 
     public Operador buscarOperadorPorId(String idEmpleado) {
-        for (Operador o : listOperador)
-            if (o.getIdEmpleado().equals(idEmpleado)) return o;
+        for (Operador o : listOperador) {
+            if (o.getIdEmpleado().equals(idEmpleado)) {
+                return o;
+            }
+        }
         return null;
     }
 
     public boolean eliminarOperador(String documento) {
         Operador o = buscarOperador(documento);
-        if (o == null) return false;
+        if (o == null){
+            return false;
+        }
         listOperador.remove(o);
-        // remove from zone too
+        // remueve zona
         for (Zona z : listZona)
             z.eliminar(o.getIdEmpleado());
         return true;
@@ -155,7 +184,9 @@ public class ParqueDeAtraccion {
     public Atraccion buscarAtraccion(String idAtraccion) {
         for (Zona z : listZona) {
             Atraccion a = z.buscarAtraccion(idAtraccion);
-            if (a != null) return a;
+            if (a != null){
+                return a;
+            }
         }
         return null;
     }
@@ -163,14 +194,17 @@ public class ParqueDeAtraccion {
     // Usa IGestionable para eliminar
     public boolean eliminarAtraccionDeZona(String idZona, String idAtraccion) {
         IGestionable zona = buscarZona(idZona);
-        if (zona == null) return false;
+        if (zona == null){
+            return false;
+        }
         return zona.eliminar(idAtraccion);
     }
 
     public List<Atraccion> getTodasLasAtracciones() {
         List<Atraccion> todas = new ArrayList<>();
-        for (Zona z : listZona)
+        for (Zona z : listZona) {
             todas.addAll(z.getListAtraccion());
+        }
         return todas;
     }
 
@@ -178,42 +212,86 @@ public class ParqueDeAtraccion {
 
 
     //GETTERS Y SETTER (te amo auto generar de intelliJ)
+
     public String getNombre() {
         return nombre;
     }
-    public void   setNombre(String n)  {
-        this.nombre = n;
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
+
     public String getNit() {
         return nit;
     }
-    public void   setNit(String n)  {
-        this.nit = n; }
-    public String getDireccion()
-    {
-        return direccion; }
-    public void   setDireccion(String d) {
-        this.direccion = d; }
-    public int    getCapacidadMax()  {
-        return capacidadMax; }
-    public void   setCapacidadMax(int c)  { this.capacidadMax = c; }
-    public int    getVisitantesActuales() { return visitantesActuales; }
 
-    public ArrayList<Visitante>     getListVisitante() {
-        return listVisitante; }
-    public ArrayList<Administrador> getListAdmin()     {
-        return listAdmin; }
-    public ArrayList<Operador>      getListOperador()  {
+    public void setNit(String nit) {
+        this.nit = nit;
+    }
+
+    public String getDireccion() {
+        return direccion;
+    }
+
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
+
+    public int getCapacidadMax() {
+        return capacidadMax;
+    }
+
+    public void setCapacidadMax(int capacidadMax) {
+        this.capacidadMax = capacidadMax;
+    }
+
+    public int getVisitantesActuales() {
+        return visitantesActuales;
+    }
+
+    public void setVisitantesActuales(int visitantesActuales) {
+        this.visitantesActuales = visitantesActuales;
+    }
+
+    public ArrayList<Visitante> getListVisitante() {
+        return listVisitante;
+    }
+
+    public void setListVisitante(ArrayList<Visitante> listVisitante) {
+        this.listVisitante = listVisitante;
+    }
+
+    public ArrayList<Administrador> getListAdmin() {
+        return listAdmin;
+    }
+
+    public void setListAdmin(ArrayList<Administrador> listAdmin) {
+        this.listAdmin = listAdmin;
+    }
+
+    public ArrayList<Operador> getListOperador() {
         return listOperador;
     }
-    public ArrayList<Zona>          getListZona()  {
-        return listZona; }
 
-    public void setListVisitante(ArrayList<Visitante> l)  {
-        this.listVisitante = l; }
-    public void setListAdmin(ArrayList<Administrador> l)    {
-        this.listAdmin = l; }
-    public void setListZona(ArrayList<Zona> l)               { this.listZona = l; }
+    public void setListOperador(ArrayList<Operador> listOperador) {
+        this.listOperador = listOperador;
+    }
+
+    public ArrayList<Zona> getListZona() {
+        return listZona;
+    }
+
+    public void setListZona(ArrayList<Zona> listZona) {
+        this.listZona = listZona;
+    }
+
+    public GestorReportes getGestorReportes() {
+        return gestorReportes;
+    }
+
+    public void setGestorReportes(GestorReportes gestorReportes) {
+        this.gestorReportes = gestorReportes;
+    }
 
     @Override
     public String toString() {

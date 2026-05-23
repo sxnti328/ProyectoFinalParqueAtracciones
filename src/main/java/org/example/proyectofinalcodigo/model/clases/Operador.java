@@ -27,6 +27,7 @@ public class Operador extends Empleado {
         return idZona;
     }
     public void   setIdZona(String idZona){
+
         this.idZona = idZona;
     }
 

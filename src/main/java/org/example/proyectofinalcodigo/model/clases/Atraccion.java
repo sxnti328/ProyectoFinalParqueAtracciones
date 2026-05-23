@@ -27,24 +27,22 @@ public class Atraccion implements IAccesible {
     private ColaVirtual  colaVirtual;
     private List<RevisionTecnica> revisiones;
 
-    public Atraccion(String id, String nombre, TipoAtraccion tipo, int capacidadMaxima,
-                     double alturaMinima, int edadMinima, double costoAdicional) {
-        this.id  = id;
+    public Atraccion(String id, String nombre, TipoAtraccion tipo, int capacidadMaxima, double alturaMinima, int edadMinima, double costoAdicional, int contadorVisitantes, int tiempoEspera, EstadoActual estado, MotivoCierre motivoCierre, Zona zona, ColaVirtual colaVirtual, List<RevisionTecnica> revisiones) {
+        this.id = id;
         this.nombre = nombre;
         this.tipo = tipo;
         this.capacidadMaxima = capacidadMaxima;
         this.alturaMinima = alturaMinima;
         this.edadMinima = edadMinima;
         this.costoAdicional = costoAdicional;
-        this.contadorVisitantes = 0;
-        this.tiempoEspera = 5;
-        this.estado  = EstadoActual.ACTIVA;
-        this.motivoCierre  = null;
-        this.colaVirtual = new ColaVirtual();
-        this.revisiones  = new ArrayList<>();
+        this.contadorVisitantes = contadorVisitantes;
+        this.tiempoEspera = tiempoEspera;
+        this.estado = estado;
+        this.motivoCierre = motivoCierre;
+        this.zona = zona;
+        this.colaVirtual = colaVirtual;
+        this.revisiones = revisiones;
     }
-
-
 
 
     @Override
@@ -92,7 +90,8 @@ public class Atraccion implements IAccesible {
         int enCola = colaVirtual.getTotalEnCola();
         tiempoEspera = Math.max(2, (enCola / Math.max(1, capacidadMaxima)) * 5 + 3);
     }
-    public int calcularTiempoEspera() { return tiempoEspera; }
+    public int calcularTiempoEspera() {
+        return tiempoEspera; }
 
     public String registrarIngreso(Visitante visitante) {
         if (!verificarAcceso(visitante))
@@ -112,32 +111,109 @@ public class Atraccion implements IAccesible {
     }
 
 
+    public String getId() {
+        return id;
+    }
 
+    public void setId(String id) {
+        this.id = id;
+    }
 
-    public String getId()         { return id; }
-    public void   setId(String id)    { this.id = id; }
-    public String getNombre()      { return nombre; }
-    public void   setNombre(String nombre)    { this.nombre = nombre; }
-    public TipoAtraccion getTipo()             { return tipo; }
-    public void   setTipo(TipoAtraccion tipo)    { this.tipo = tipo; }
-    public int    getCapacidadMaxima()            { return capacidadMaxima; }
-    public void   setCapacidadMaxima(int c)       { this.capacidadMaxima = c; }
-    public double getAlturaMinima()               { return alturaMinima; }
-    public void   setAlturaMinima(double a)       { this.alturaMinima = a; }
-    public int    getEdadMinima()                 { return edadMinima; }
-    public void   setEdadMinima(int e)            { this.edadMinima = e; }
-    public void   setCostoAdicional(double c)     { this.costoAdicional = c; }
-    public int    getContadorVisitantes()         { return contadorVisitantes; }
-    public void   setContadorVisitantes(int c)    { this.contadorVisitantes = c; }
-    public int    getTiempoEspera()               { return tiempoEspera; }
-    public void   setTiempoEspera(int t)          { this.tiempoEspera = t; }
-    public void   setEstado(EstadoActual e)        { this.estado = e; }
-    public MotivoCierre getMotivoCierre()          { return motivoCierre; }
-    public void   setMotivoCierre(MotivoCierre m)  { this.motivoCierre = m; }
-    public Zona   getZona()                        { return zona; }
-    public void   setZona(Zona zona)               { this.zona = zona; }
-    public ColaVirtual getColaVirtual()            { return colaVirtual; }
+    public String getNombre() {
+        return nombre;
+    }
 
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public TipoAtraccion getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(TipoAtraccion tipo) {
+        this.tipo = tipo;
+    }
+
+    public int getCapacidadMaxima() {
+        return capacidadMaxima;
+    }
+
+    public void setCapacidadMaxima(int capacidadMaxima) {
+        this.capacidadMaxima = capacidadMaxima;
+    }
+
+    public double getAlturaMinima() {
+        return alturaMinima;
+    }
+
+    public void setAlturaMinima(double alturaMinima) {
+        this.alturaMinima = alturaMinima;
+    }
+
+    public int getEdadMinima() {
+        return edadMinima;
+    }
+
+    public void setEdadMinima(int edadMinima) {
+        this.edadMinima = edadMinima;
+    }
+
+    public void setCostoAdicional(double costoAdicional) {
+        this.costoAdicional = costoAdicional;
+    }
+
+    public int getContadorVisitantes() {
+        return contadorVisitantes;
+    }
+
+    public void setContadorVisitantes(int contadorVisitantes) {
+        this.contadorVisitantes = contadorVisitantes;
+    }
+
+    public int getTiempoEspera() {
+        return tiempoEspera;
+    }
+
+    public void setTiempoEspera(int tiempoEspera) {
+        this.tiempoEspera = tiempoEspera;
+    }
+
+    public void setEstado(EstadoActual estado) {
+        this.estado = estado;
+    }
+
+    public MotivoCierre getMotivoCierre() {
+        return motivoCierre;
+    }
+
+    public void setMotivoCierre(MotivoCierre motivoCierre) {
+        this.motivoCierre = motivoCierre;
+    }
+
+    public Zona getZona() {
+        return zona;
+    }
+
+    public void setZona(Zona zona) {
+        this.zona = zona;
+    }
+
+    public ColaVirtual getColaVirtual() {
+        return colaVirtual;
+    }
+
+    public void setColaVirtual(ColaVirtual colaVirtual) {
+        this.colaVirtual = colaVirtual;
+    }
+
+    public List<RevisionTecnica> getRevisiones() {
+        return revisiones;
+    }
+
+    public void setRevisiones(List<RevisionTecnica> revisiones) {
+        this.revisiones = revisiones;
+    }
 }
 
 
