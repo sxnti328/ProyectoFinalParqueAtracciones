@@ -5,12 +5,14 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import org.example.proyectofinalcodigo.App;
+import org.example.proyectofinalcodigo.controller.VisitanteController;
 import org.example.proyectofinalcodigo.model.clases.Visitante;
 import org.example.proyectofinalcodigo.model.enums.TipoTicket;
 
 public class VisitanteViewController {
 
     private App app;
+    private VisitanteController controlador;
 
     @FXML private TextField txtNombre;
     @FXML private TextField txtDocumento;
@@ -22,7 +24,7 @@ public class VisitanteViewController {
     @FXML private TableView<Visitante> tablaVisitantes;
     @FXML private TableColumn<Visitante, String> colNombre;
     @FXML private TableColumn<Visitante, String> colDocumento;
-    @FXML private TableColumn<Visitante, Integer> colEdad;
+    @FXML private TableColumn<Visitante, Integer>colEdad;
     @FXML private TableColumn<Visitante, String> colTelefono;
     @FXML private TableColumn<Visitante, String> colDireccion;
     @FXML private TableColumn<Visitante, Double> colEstatura;
@@ -39,6 +41,16 @@ public class VisitanteViewController {
 
     public void setApp(App app) {
         this.app = app;
+        this.controlador = new VisitanteController(app.parque);
+
+        tablaVisitantes.getSelectionModel().selectedItemProperty().addListener(
+                (obs, anterior, seleccionado) -> {
+                    if (seleccionado != null) {
+                        llenarFormulario(seleccionado);
+                    }
+                }
+        );
+
         refrescarTabla();
     }
 
@@ -57,7 +69,26 @@ public class VisitanteViewController {
 
     private void refrescarTabla() {
         tablaVisitantes.setItems(
-                FXCollections.observableArrayList(app.parque.getListVisitante()));
+                FXCollections.observableArrayList(controlador.getVisitantes()));
+    }
+
+    private void llenarFormulario(Visitante v) {
+        txtNombre.setText(v.getNombre());
+        txtDocumento.setText(v.getDocumento());
+        txtEdad.setText(String.valueOf(v.getEdad()));
+        txtTelefono.setText(v.getTelefono());
+        txtDireccion.setText(v.getDireccion());
+        txtEstatura.setText(String.valueOf(v.getEstatura()));
+    }
+
+    private void limpiarCampos() {
+        txtNombre.clear();
+        txtDocumento.clear();
+        txtEdad.clear();
+        txtTelefono.clear();
+        txtDireccion.clear();
+        txtEstatura.clear();
+        tablaVisitantes.getSelectionModel().clearSelection();
     }
 
     @FXML
@@ -67,17 +98,75 @@ public class VisitanteViewController {
 
     @FXML
     private void onGuardar() {
-        lblMensaje.setText("pendiente");
+        String nombre = txtNombre.getText().trim();
+        String documento = txtDocumento.getText().trim();
+        String telefono = txtTelefono.getText().trim();
+        String direccion = txtDireccion.getText().trim();
+
+        try {
+            int edad = Integer.parseInt(txtEdad.getText().trim());
+            double estatura = Double.parseDouble(txtEstatura.getText().trim());
+
+            boolean ok = controlador.agregarVisitante(nombre, documento, edad,
+                    estatura, telefono, direccion);
+            if (ok) {
+                limpiarCampos();
+                refrescarTabla();
+                lblMensaje.setText("Visitante guardado correctamente.");
+            } else {
+                lblMensaje.setText("Ya existe un visitante con ese documento.");
+            }
+        } catch (NumberFormatException e) {
+            lblMensaje.setText("Edad debe ser entero y estatura debe ser número.");
+        }
     }
 
     @FXML
     private void onActualizar() {
-        lblMensaje.setText("que funcione esto porfa tengo sueño");
+        Visitante seleccionado = tablaVisitantes.getSelectionModel().getSelectedItem();
+        if (seleccionado == null) {
+            lblMensaje.setText("Selecciona un visitante de la tabla.");
+            return;
+        }
+
+        String nombre = txtNombre.getText().trim();
+        String telefono = txtTelefono.getText().trim();
+        String direccion = txtDireccion.getText().trim();
+
+        try {
+            int edad = Integer.parseInt(txtEdad.getText().trim());
+            double estatura = Double.parseDouble(txtEstatura.getText().trim());
+
+            boolean ok = controlador.actualizarVisitante(seleccionado.getDocumento(),
+                    nombre, edad, estatura, telefono, direccion);
+            if (ok) {
+                limpiarCampos();
+                refrescarTabla();
+                lblMensaje.setText("Visitante actualizado.");
+            } else {
+                lblMensaje.setText("No se pudo actualizar.");
+            }
+        } catch (NumberFormatException e) {
+            lblMensaje.setText("Verifica que edad y estatura sean números válidos.");
+        }
     }
 
     @FXML
     private void onEliminar() {
-        lblMensaje.setText("pendiente");
+        Visitante seleccionado = tablaVisitantes.getSelectionModel().getSelectedItem();
+        if (seleccionado == null) {
+            lblMensaje.setText("Selecciona un visitante de la tabla.");
+            return;
+        }
+
+        boolean ok = controlador.eliminarVisitante(seleccionado.getDocumento());
+        if (ok) {
+            limpiarCampos();
+            refrescarTabla();
+            lblMensaje.setText("Visitante eliminado.");
+        } else {
+            lblMensaje.setText("No se pudo eliminar el visitante.");
+        }
     }
 
     @FXML
@@ -92,6 +181,27 @@ public class VisitanteViewController {
 
     @FXML
     private void onComprarTicket() {
-        lblTicketMsg.setText("pendiente");
+        Visitante seleccionado = tablaVisitantes.getSelectionModel().getSelectedItem();
+        if (seleccionado == null) {
+            lblTicketMsg.setText("Selecciona un visitante primero.");
+            return;
+        }
+
+        TipoTicket tipo = cbTipoTicket.getValue();
+
+        try {
+            double precio = Double.parseDouble(txtPrecioTicket.getText().trim());
+            int integrantes = 1;
+            if (tipo == TipoTicket.FAMILIAR) {
+                integrantes = Integer.parseInt(txtNumIntegrantes.getText().trim());
+            }
+
+            String resultado = controlador.comprarTicket(
+                    seleccionado.getDocumento(), tipo, precio, integrantes);
+            lblTicketMsg.setText(resultado);
+            refrescarTabla();
+        } catch (NumberFormatException e) {
+            lblTicketMsg.setText("Verifica que el precio sea un número válido.");
+        }
     }
 }
