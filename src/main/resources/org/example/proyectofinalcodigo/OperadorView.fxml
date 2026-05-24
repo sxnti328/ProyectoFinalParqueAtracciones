@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox spacing="8" prefWidth="850" prefHeight="680"
+      xmlns="http://javafx.com/javafx/21"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="org.example.proyectofinalcodigo.viewController.OperadorViewController">
+
+    <padding><Insets top="10" right="10" bottom="10" left="10"/></padding>
+
+    <HBox spacing="10">
+        <Button text="Volver" onAction="#onVolver"/>
+        <Label text="Panel Operador"/>
+    </HBox>
+
+    <HBox spacing="10">
+        <Label text="Operador:"/>
+        <ComboBox fx:id="cbOperador" prefWidth="220" onAction="#onSeleccionarOperador"/>
+        <Label fx:id="lblInfoOperador"/>
+    </HBox>
+    <Label fx:id="lblZona"/>
+
+    <Label text="Atracciones de la zona:"/>
+    <TableView fx:id="tablaAtracciones" prefHeight="140">
+        <columns>
+            <TableColumn fx:id="colNombreA"     text="Nombre"     prefWidth="150"/>
+            <TableColumn fx:id="colTipoA"       text="Tipo"       prefWidth="120"/>
+            <TableColumn fx:id="colEstadoA"     text="Estado"     prefWidth="120"/>
+            <TableColumn fx:id="colVisitantesA" text="Visitantes" prefWidth="90"/>
+            <TableColumn fx:id="colEsperaA"     text="Espera"     prefWidth="80"/>
+        </columns>
+    </TableView>
+
+    <HBox spacing="10">
+
+        <VBox spacing="5" prefWidth="260">
+            <Label text="Validar acceso"/>
+            <Label text="Documento:"/>
+            <TextField fx:id="txtDocVisitante"/>
+            <Label text="Atraccion:"/>
+            <ComboBox fx:id="cbAtraccionAcceso" prefWidth="250"/>
+            <Button text="Validar" onAction="#onValidarAcceso"/>
+            <Label fx:id="lblResultadoAcceso" wrapText="true"/>
+        </VBox>
+
+        <VBox spacing="5" prefWidth="260">
+            <Label text="Cambiar estado"/>
+            <Label text="Atraccion:"/>
+            <ComboBox fx:id="cbAtraccionEstado" prefWidth="250"/>
+            <Label text="Nuevo estado:"/>
+            <ComboBox fx:id="cbNuevoEstado" prefWidth="250"/>
+            <Label text="Motivo:"/>
+            <ComboBox fx:id="cbMotivo" prefWidth="250"/>
+            <Button text="Cambiar" onAction="#onCambiarEstado"/>
+            <Label fx:id="lblResultadoEstado" wrapText="true"/>
+        </VBox>
+
+        <VBox spacing="5" prefWidth="260">
+            <Label text="Revision tecnica"/>
+            <Label text="Atraccion:"/>
+            <ComboBox fx:id="cbAtraccionRevision" prefWidth="250"/>
+            <Label text="Descripcion:"/>
+            <TextArea fx:id="txtDescripcion" prefHeight="60" prefWidth="250" wrapText="true"/>
+            <Button text="Registrar" onAction="#onRegistrarRevision"/>
+            <Label fx:id="lblResultadoRevision" wrapText="true"/>
+        </VBox>
+
+    </HBox>
+
+    <Label text="Recargar saldo de un visitante:"/>
+    <HBox spacing="8">
+        <Label text="Documento:"/>
+        <TextField fx:id="txtDocSaldo" prefWidth="120"/>
+        <Label text="Monto:"/>
+        <TextField fx:id="txtMontoSaldo" prefWidth="120"/>
+        <Button text="Recargar saldo" onAction="#onRecargarSaldo"/>
+    </HBox>
+    <Label fx:id="lblResultadoSaldo"/>
+
+</VBox>
