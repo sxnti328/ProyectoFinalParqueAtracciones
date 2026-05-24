@@ -1,14 +1,144 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="CONTROLLER_NAME"
-            prefHeight="400.0" prefWidth="600.0">
+<VBox spacing="8" prefWidth="900" prefHeight="650"
+      xmlns="http://javafx.com/javafx/21"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="org.example.proyectofinalcodigo.viewController.AdminViewController">
 
-</AnchorPane>
+    <padding><Insets top="10" right="10" bottom="10" left="10"/></padding>
+
+    <HBox spacing="10">
+        <Button text="Volver" onAction="#onVolver"/>
+        <Label text="Panel Administrador"/>
+    </HBox>
+
+    <TabPane VBox.vgrow="ALWAYS" tabClosingPolicy="UNAVAILABLE">
+
+        <Tab text="Operadores">
+            <VBox spacing="8">
+                <padding><Insets top="8" right="8" bottom="8" left="8"/></padding>
+                <Label text="Nuevo operador:"/>
+                <GridPane hgap="8" vgap="5">
+                    <Label text="Nombre:"      GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                    <TextField fx:id="txtOpNombre"    GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+                    <Label text="Documento:"   GridPane.rowIndex="0" GridPane.columnIndex="2"/>
+                    <TextField fx:id="txtOpDocumento" GridPane.rowIndex="0" GridPane.columnIndex="3"/>
+                    <Label text="Edad:"        GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                    <TextField fx:id="txtOpEdad"      GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+                    <Label text="ID empleado:" GridPane.rowIndex="1" GridPane.columnIndex="2"/>
+                    <TextField fx:id="txtOpIdEmp"     GridPane.rowIndex="1" GridPane.columnIndex="3"/>
+                    <Label text="Turno:"       GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+                    <TextField fx:id="txtOpTurno"     GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+                    <Label text="Zona:"        GridPane.rowIndex="2" GridPane.columnIndex="2"/>
+                    <ComboBox fx:id="cbOpZona"        GridPane.rowIndex="2" GridPane.columnIndex="3" prefWidth="150"/>
+                </GridPane>
+                <HBox spacing="8">
+                    <Button text="Agregar"  onAction="#onGuardarOperador"/>
+                    <Button text="Eliminar" onAction="#onEliminarOperador"/>
+                    <Label fx:id="lblOpMsg"/>
+                </HBox>
+                <TableView fx:id="tablaOperadores" prefHeight="280">
+                    <columns>
+                        <TableColumn fx:id="colOpNombre" text="Nombre"    prefWidth="180"/>
+                        <TableColumn fx:id="colOpDoc"    text="Documento" prefWidth="120"/>
+                        <TableColumn fx:id="colOpTurno"  text="Turno"     prefWidth="120"/>
+                        <TableColumn fx:id="colOpZona"   text="Zona"      prefWidth="100"/>
+                    </columns>
+                </TableView>
+            </VBox>
+        </Tab>
+
+        <Tab text="Zonas">
+            <VBox spacing="8">
+                <padding><Insets top="8" right="8" bottom="8" left="8"/></padding>
+                <Label text="Nueva zona:"/>
+                <GridPane hgap="8" vgap="5">
+                    <Label text="ID:"          GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                    <TextField fx:id="txtZonaId"     GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+                    <Label text="Nombre:"      GridPane.rowIndex="0" GridPane.columnIndex="2"/>
+                    <TextField fx:id="txtZonaNombre" GridPane.rowIndex="0" GridPane.columnIndex="3"/>
+                    <Label text="Descripcion:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                    <TextField fx:id="txtZonaDesc"   GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+                    <Label text="Capacidad:"   GridPane.rowIndex="1" GridPane.columnIndex="2"/>
+                    <TextField fx:id="txtZonaCap"    GridPane.rowIndex="1" GridPane.columnIndex="3"/>
+                </GridPane>
+                <HBox spacing="8">
+                    <Button text="Agregar"  onAction="#onGuardarZona"/>
+                    <Button text="Eliminar" onAction="#onEliminarZona"/>
+                    <Label fx:id="lblZonaMsg"/>
+                </HBox>
+                <TableView fx:id="tablaZonas" prefHeight="320">
+                    <columns>
+                        <TableColumn fx:id="colZonaId"     text="ID"        prefWidth="80"/>
+                        <TableColumn fx:id="colZonaNombre" text="Nombre"    prefWidth="200"/>
+                        <TableColumn fx:id="colZonaCap"    text="Capacidad" prefWidth="100"/>
+                    </columns>
+                </TableView>
+            </VBox>
+        </Tab>
+
+        <Tab text="Atracciones">
+            <VBox spacing="8">
+                <padding><Insets top="8" right="8" bottom="8" left="8"/></padding>
+                <Label text="Nueva atraccion:"/>
+                <GridPane hgap="8" vgap="5">
+                    <Label text="ID:"          GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                    <TextField fx:id="txtAtrId"      GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+                    <Label text="Nombre:"      GridPane.rowIndex="0" GridPane.columnIndex="2"/>
+                    <TextField fx:id="txtAtrNombre"  GridPane.rowIndex="0" GridPane.columnIndex="3"/>
+                    <Label text="Tipo:"        GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                    <ComboBox fx:id="cbAtrTipo"      GridPane.rowIndex="1" GridPane.columnIndex="1" prefWidth="150"/>
+                    <Label text="Zona:"        GridPane.rowIndex="1" GridPane.columnIndex="2"/>
+                    <ComboBox fx:id="cbAtrZona"      GridPane.rowIndex="1" GridPane.columnIndex="3" prefWidth="150"/>
+                    <Label text="Capacidad:"   GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+                    <TextField fx:id="txtAtrCap"     GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+                    <Label text="Altura min:"  GridPane.rowIndex="2" GridPane.columnIndex="2"/>
+                    <TextField fx:id="txtAtrAltura"  GridPane.rowIndex="2" GridPane.columnIndex="3"/>
+                    <Label text="Edad min:"    GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+                    <TextField fx:id="txtAtrEdad"    GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+                    <Label text="Costo:"       GridPane.rowIndex="3" GridPane.columnIndex="2"/>
+                    <TextField fx:id="txtAtrCosto"   GridPane.rowIndex="3" GridPane.columnIndex="3"/>
+                </GridPane>
+                <HBox spacing="8">
+                    <Button text="Agregar"  onAction="#onGuardarAtraccion"/>
+                    <Button text="Eliminar" onAction="#onEliminarAtraccion"/>
+                    <Label fx:id="lblAtrMsg"/>
+                </HBox>
+                <TableView fx:id="tablaAtracciones" prefHeight="240">
+                    <columns>
+                        <TableColumn fx:id="colAtrNombre"     text="Nombre"     prefWidth="180"/>
+                        <TableColumn fx:id="colAtrTipo"       text="Tipo"       prefWidth="120"/>
+                        <TableColumn fx:id="colAtrEstado"     text="Estado"     prefWidth="120"/>
+                        <TableColumn fx:id="colAtrVisitantes" text="Visitantes" prefWidth="100"/>
+                    </columns>
+                </TableView>
+            </VBox>
+        </Tab>
+
+        <Tab text="Alertas">
+            <VBox spacing="10" alignment="CENTER">
+                <padding><Insets top="20" right="20" bottom="20" left="20"/></padding>
+                <Label text="Control de alertas climaticas"/>
+                <Label text="Al activar la alerta se cierran las atracciones acuaticas y mecanicas de altura."
+                       wrapText="true" prefWidth="500"/>
+                <HBox spacing="10" alignment="CENTER">
+                    <Button text="Activar alerta"    onAction="#onActivarAlerta"/>
+                    <Button text="Desactivar alerta" onAction="#onDesactivarAlerta"/>
+                </HBox>
+                <Label fx:id="lblAlertaMsg"/>
+            </VBox>
+        </Tab>
+
+        <Tab text="Reportes">
+            <VBox spacing="8">
+                <padding><Insets top="8" right="8" bottom="8" left="8"/></padding>
+                <Button text="Generar reporte diario" onAction="#onGenerarReporte"/>
+                <TextArea fx:id="txtReporte" editable="false" wrapText="true" prefHeight="500"/>
+            </VBox>
+        </Tab>
+
+    </TabPane>
+</VBox>
