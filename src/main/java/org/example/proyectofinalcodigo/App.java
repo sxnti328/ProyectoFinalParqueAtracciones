@@ -25,7 +25,7 @@ public class App extends Application {
         stage.setMinWidth(800);
         stage.setMinHeight(600);
 
-        parque = Parque.get();
+        parque = new ParqueDeAtraccion("Tech-Park UQ", "NIT-123-456", "Calle 100 # 50-30", 500);
         mostrarMenu();
         stage.show();
     }
