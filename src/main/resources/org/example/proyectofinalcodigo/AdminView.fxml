@@ -38,18 +38,22 @@
                     <ComboBox fx:id="cbOpZona"        GridPane.rowIndex="2" GridPane.columnIndex="3" prefWidth="150"/>
                 </GridPane>
                 <HBox spacing="8">
-                    <Button text="Agregar"  onAction="#onGuardarOperador"
+                    <Button text="Agregar"    onAction="#onGuardarOperador"
                             style="-fx-background-color: #0071e3; -fx-text-fill: white; -fx-background-radius: 6;"/>
-                    <Button text="Eliminar" onAction="#onEliminarOperador"
+                    <Button text="Actualizar" onAction="#onActualizarOperador"
+                            style="-fx-background-color: #0071e3; -fx-text-fill: white; -fx-background-radius: 6;"/>
+                    <Button text="Eliminar"   onAction="#onEliminarOperador"
                             style="-fx-background-color: #ff3b30; -fx-text-fill: white; -fx-background-radius: 6;"/>
                     <Label fx:id="lblOpMsg"/>
                 </HBox>
                 <TableView fx:id="tablaOperadores" prefHeight="280">
                     <columns>
-                        <TableColumn fx:id="colOpNombre" text="Nombre"    prefWidth="180"/>
-                        <TableColumn fx:id="colOpDoc"    text="Documento" prefWidth="120"/>
-                        <TableColumn fx:id="colOpTurno"  text="Turno"     prefWidth="120"/>
-                        <TableColumn fx:id="colOpZona"   text="Zona"      prefWidth="100"/>
+                        <TableColumn fx:id="colOpNombre" text="Nombre"    prefWidth="150"/>
+                        <TableColumn fx:id="colOpDoc"    text="Documento" prefWidth="110"/>
+                        <TableColumn fx:id="colOpEdad"   text="Edad"      prefWidth="55"/>
+                        <TableColumn fx:id="colOpIdEmp"  text="ID Emp"    prefWidth="90"/>
+                        <TableColumn fx:id="colOpTurno"  text="Turno"     prefWidth="100"/>
+                        <TableColumn fx:id="colOpZona"   text="Zona"      prefWidth="90"/>
                     </columns>
                 </TableView>
             </VBox>
@@ -70,17 +74,20 @@
                     <TextField fx:id="txtZonaCap"    GridPane.rowIndex="1" GridPane.columnIndex="3"/>
                 </GridPane>
                 <HBox spacing="8">
-                    <Button text="Agregar"  onAction="#onGuardarZona"
+                    <Button text="Agregar"    onAction="#onGuardarZona"
                             style="-fx-background-color: #0071e3; -fx-text-fill: white; -fx-background-radius: 6;"/>
-                    <Button text="Eliminar" onAction="#onEliminarZona"
+                    <Button text="Actualizar" onAction="#onActualizarZona"
+                            style="-fx-background-color: #0071e3; -fx-text-fill: white; -fx-background-radius: 6;"/>
+                    <Button text="Eliminar"   onAction="#onEliminarZona"
                             style="-fx-background-color: #ff3b30; -fx-text-fill: white; -fx-background-radius: 6;"/>
                     <Label fx:id="lblZonaMsg"/>
                 </HBox>
                 <TableView fx:id="tablaZonas" prefHeight="320">
                     <columns>
-                        <TableColumn fx:id="colZonaId"     text="ID"        prefWidth="80"/>
-                        <TableColumn fx:id="colZonaNombre" text="Nombre"    prefWidth="200"/>
-                        <TableColumn fx:id="colZonaCap"    text="Capacidad" prefWidth="100"/>
+                        <TableColumn fx:id="colZonaId"     text="ID"          prefWidth="75"/>
+                        <TableColumn fx:id="colZonaNombre" text="Nombre"      prefWidth="160"/>
+                        <TableColumn fx:id="colZonaDesc"   text="Descripcion" prefWidth="250"/>
+                        <TableColumn fx:id="colZonaCap"    text="Capacidad"   prefWidth="90"/>
                     </columns>
                 </TableView>
             </VBox>
@@ -109,18 +116,26 @@
                     <TextField fx:id="txtAtrCosto"   GridPane.rowIndex="3" GridPane.columnIndex="3"/>
                 </GridPane>
                 <HBox spacing="8">
-                    <Button text="Agregar"  onAction="#onGuardarAtraccion"
+                    <Button text="Agregar"    onAction="#onGuardarAtraccion"
                             style="-fx-background-color: #0071e3; -fx-text-fill: white; -fx-background-radius: 6;"/>
-                    <Button text="Eliminar" onAction="#onEliminarAtraccion"
+                    <Button text="Actualizar" onAction="#onActualizarAtraccion"
+                            style="-fx-background-color: #0071e3; -fx-text-fill: white; -fx-background-radius: 6;"/>
+                    <Button text="Eliminar"   onAction="#onEliminarAtraccion"
                             style="-fx-background-color: #ff3b30; -fx-text-fill: white; -fx-background-radius: 6;"/>
                     <Label fx:id="lblAtrMsg"/>
                 </HBox>
                 <TableView fx:id="tablaAtracciones" prefHeight="240">
                     <columns>
-                        <TableColumn fx:id="colAtrNombre"     text="Nombre"     prefWidth="180"/>
-                        <TableColumn fx:id="colAtrTipo"       text="Tipo"       prefWidth="120"/>
-                        <TableColumn fx:id="colAtrEstado"     text="Estado"     prefWidth="120"/>
-                        <TableColumn fx:id="colAtrVisitantes" text="Visitantes" prefWidth="100"/>
+                        <TableColumn fx:id="colAtrId"         text="ID"         prefWidth="70"/>
+                        <TableColumn fx:id="colAtrNombre"     text="Nombre"     prefWidth="130"/>
+                        <TableColumn fx:id="colAtrTipo"       text="Tipo"       prefWidth="100"/>
+                        <TableColumn fx:id="colAtrZona"       text="Zona"       prefWidth="110"/>
+                        <TableColumn fx:id="colAtrCap"        text="Capacidad"  prefWidth="75"/>
+                        <TableColumn fx:id="colAtrAltura"     text="Altura min" prefWidth="75"/>
+                        <TableColumn fx:id="colAtrEdadMin"    text="Edad min"   prefWidth="70"/>
+                        <TableColumn fx:id="colAtrCosto"      text="Costo"      prefWidth="75"/>
+                        <TableColumn fx:id="colAtrEstado"     text="Estado"     prefWidth="100"/>
+                        <TableColumn fx:id="colAtrVisitantes" text="Visitantes" prefWidth="80"/>
                     </columns>
                 </TableView>
             </VBox>

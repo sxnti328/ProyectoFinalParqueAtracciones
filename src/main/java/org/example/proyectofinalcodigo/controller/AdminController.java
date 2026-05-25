@@ -29,6 +29,19 @@ public class AdminController {
         return parque.eliminarOperador(documento);
     }
 
+    public boolean actualizarOperador(String documento, String nombre, int edad, String turno) {
+        Operador o = parque.buscarOperador(documento);
+        if (o == null) return false;
+        o.setNombre(nombre);
+        o.setEdad(edad);
+        o.setTurno(turno);
+        return true;
+    }
+
+    public boolean asignarOperadorAZona(String idEmpleado, String idZona) {
+        return parque.asignarOperadorAZona(idEmpleado, idZona);
+    }
+
     public ArrayList<Operador> obtenerListaOperadores() {
         return parque.getListOperador();
     }
@@ -41,6 +54,15 @@ public class AdminController {
 
     public boolean eliminarZona(String idZona) {
         return parque.eliminarZona(idZona);
+    }
+
+    public boolean actualizarZona(String idZona, String nombre, String descripcion, int capacidad) {
+        Zona z = parque.buscarZona(idZona);
+        if (z == null) return false;
+        z.setNombre(nombre);
+        z.setDescripcion(descripcion);
+        z.setCapacidadMax(capacidad);
+        return true;
     }
 
     public ArrayList<Zona> obtenerListaZonas() {
@@ -58,6 +80,18 @@ public class AdminController {
     public boolean eliminarAtraccion(Atraccion a) {
         if (a == null || a.getZona() == null) return false;
         return parque.eliminarAtraccionDeZona(a.getZona().getIdZona(), a.getId());
+    }
+
+    public boolean actualizarAtraccion(String idAtraccion, String nombre, int capacidad,
+                                       double altura, int edad, double costo) {
+        Atraccion a = parque.buscarAtraccion(idAtraccion);
+        if (a == null) return false;
+        a.setNombre(nombre);
+        a.setCapacidadMaxima(capacidad);
+        a.setAlturaMinima(altura);
+        a.setEdadMinima(edad);
+        a.setCostoAdicional(costo);
+        return true;
     }
 
     public List<Atraccion> obtenerListaAtracciones() {
