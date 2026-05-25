@@ -25,7 +25,7 @@ public class App extends Application {
         stage.setMinWidth(800);
         stage.setMinHeight(600);
 
-        parque = new ParqueDeAtraccion("Tech-Park UQ", "NIT-123-456", "Calle 100 # 50-30", 500);
+        parque = Parque.get();
         mostrarMenu();
         stage.show();
     }
@@ -36,8 +36,7 @@ public class App extends Application {
 
     public void mostrarMenu() {
         try {
-            FXMLLoader loader = new FXMLLoader(
-                    getClass().getResource("/org/example/proyectofinalcodigo/menu-principal.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/proyectofinalcodigo/menu-principal.fxml"));
             Parent root = loader.load();
             MainViewController vc = loader.getController();
             vc.setApp(this);

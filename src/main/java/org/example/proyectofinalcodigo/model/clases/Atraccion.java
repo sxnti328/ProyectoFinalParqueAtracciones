@@ -125,7 +125,7 @@ public class Atraccion implements IAccesible {
 
     private void actualizarTiempoEspera() {
         int enCola = colaVirtual.getTotalElementos();
-        tiempoEspera = Math.max(2, (enCola / Math.max(1, capacidadMaxima)) * 5 + 3);
+        tiempoEspera = 3 + enCola * 2;
     }
 
     public int calcularTiempoEspera() {

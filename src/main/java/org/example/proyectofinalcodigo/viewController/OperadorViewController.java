@@ -91,6 +91,7 @@ public class OperadorViewController {
                 txtDocVisitante.getText().trim(),
                 cbAtraccionAcceso.getValue());
         lblResultadoAcceso.setText(resultado);
+        refrescarAtracciones();
     }
 
     @FXML

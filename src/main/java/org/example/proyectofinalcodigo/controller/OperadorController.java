@@ -38,8 +38,7 @@ public class OperadorController {
         var visitante = parque.buscarVisitante(docVisitante);
         if (visitante == null) return "Visitante no encontrado.";
         if (visitante.getTicketActivo() == null) return "El visitante no tiene ticket activo.";
-        boolean ok = atraccion.verificarAcceso(visitante);
-        return ok ? "Acceso permitido: " + visitante.getNombre() : "Acceso denegado por altura o edad.";
+        return atraccion.registrarIngreso(visitante);
     }
 
     public String cambiarEstado(Atraccion a, EstadoActual estado, MotivoCierre motivo) {
