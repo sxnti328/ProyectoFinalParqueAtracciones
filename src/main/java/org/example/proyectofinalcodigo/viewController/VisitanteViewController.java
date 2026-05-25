@@ -74,6 +74,7 @@ public class VisitanteViewController {
     private void refrescarTabla() {
         tablaVisitantes.setItems(
                 FXCollections.observableArrayList(controlador.getVisitantes()));
+        tablaVisitantes.refresh();
     }
 
     private void llenarFormulario(Visitante v) {
