@@ -63,7 +63,7 @@ public class App extends Application {
     public void mostrarOperador() {
         try {
             FXMLLoader loader = new FXMLLoader(
-                    getClass().getResource("/org/example/proyectofinalcodigo/operador-view.fxml"));
+                    getClass().getResource("/org/example/proyectofinalcodigo/OperadorView.fxml"));
             Parent root = loader.load();
             OperadorViewController vc = loader.getController();
             vc.setApp(this);
@@ -76,7 +76,7 @@ public class App extends Application {
     public void mostrarAdmin() {
         try {
             FXMLLoader loader = new FXMLLoader(
-                    getClass().getResource("/org/example/proyectofinalcodigo/admin-view.fxml"));
+                    getClass().getResource("/org/example/proyectofinalcodigo/AdminView.fxml"));
             Parent root = loader.load();
             AdminViewController vc = loader.getController();
             vc.setApp(this);

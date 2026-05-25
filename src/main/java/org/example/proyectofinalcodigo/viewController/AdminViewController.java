@@ -199,7 +199,7 @@ public class AdminViewController {
 
     @FXML
     private void onVolver() {
-        app.mostrarMenuPrincipal();
+        app.mostrarMenu();
     }
 
     private void cargarTablas() {

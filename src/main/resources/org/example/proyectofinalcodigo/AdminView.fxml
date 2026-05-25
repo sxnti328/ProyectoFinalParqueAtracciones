@@ -6,20 +6,22 @@
 <VBox spacing="8" prefWidth="900" prefHeight="650"
       xmlns="http://javafx.com/javafx/21"
       xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="org.example.proyectofinalcodigo.viewController.AdminViewController">
+      fx:controller="org.example.proyectofinalcodigo.viewController.AdminViewController"
+      style="-fx-background-color: #f5f5f7;">
 
     <padding><Insets top="10" right="10" bottom="10" left="10"/></padding>
 
-    <HBox spacing="10">
-        <Button text="Volver" onAction="#onVolver"/>
-        <Label text="Panel Administrador"/>
+    <HBox spacing="12" alignment="CENTER_LEFT">
+        <Button text="&lt; Volver" onAction="#onVolver"/>
+        <Label text="Panel Administrador"
+               style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
     </HBox>
 
     <TabPane VBox.vgrow="ALWAYS" tabClosingPolicy="UNAVAILABLE">
 
         <Tab text="Operadores">
-            <VBox spacing="8">
-                <padding><Insets top="8" right="8" bottom="8" left="8"/></padding>
+            <VBox spacing="8" style="-fx-background-color: white; -fx-background-radius: 8;">
+                <padding><Insets top="12" right="12" bottom="12" left="12"/></padding>
                 <Label text="Nuevo operador:"/>
                 <GridPane hgap="8" vgap="5">
                     <Label text="Nombre:"      GridPane.rowIndex="0" GridPane.columnIndex="0"/>
@@ -36,8 +38,10 @@
                     <ComboBox fx:id="cbOpZona"        GridPane.rowIndex="2" GridPane.columnIndex="3" prefWidth="150"/>
                 </GridPane>
                 <HBox spacing="8">
-                    <Button text="Agregar"  onAction="#onGuardarOperador"/>
-                    <Button text="Eliminar" onAction="#onEliminarOperador"/>
+                    <Button text="Agregar"  onAction="#onGuardarOperador"
+                            style="-fx-background-color: #0071e3; -fx-text-fill: white; -fx-background-radius: 6;"/>
+                    <Button text="Eliminar" onAction="#onEliminarOperador"
+                            style="-fx-background-color: #ff3b30; -fx-text-fill: white; -fx-background-radius: 6;"/>
                     <Label fx:id="lblOpMsg"/>
                 </HBox>
                 <TableView fx:id="tablaOperadores" prefHeight="280">
@@ -52,8 +56,8 @@
         </Tab>
 
         <Tab text="Zonas">
-            <VBox spacing="8">
-                <padding><Insets top="8" right="8" bottom="8" left="8"/></padding>
+            <VBox spacing="8" style="-fx-background-color: white; -fx-background-radius: 8;">
+                <padding><Insets top="12" right="12" bottom="12" left="12"/></padding>
                 <Label text="Nueva zona:"/>
                 <GridPane hgap="8" vgap="5">
                     <Label text="ID:"          GridPane.rowIndex="0" GridPane.columnIndex="0"/>
@@ -66,8 +70,10 @@
                     <TextField fx:id="txtZonaCap"    GridPane.rowIndex="1" GridPane.columnIndex="3"/>
                 </GridPane>
                 <HBox spacing="8">
-                    <Button text="Agregar"  onAction="#onGuardarZona"/>
-                    <Button text="Eliminar" onAction="#onEliminarZona"/>
+                    <Button text="Agregar"  onAction="#onGuardarZona"
+                            style="-fx-background-color: #0071e3; -fx-text-fill: white; -fx-background-radius: 6;"/>
+                    <Button text="Eliminar" onAction="#onEliminarZona"
+                            style="-fx-background-color: #ff3b30; -fx-text-fill: white; -fx-background-radius: 6;"/>
                     <Label fx:id="lblZonaMsg"/>
                 </HBox>
                 <TableView fx:id="tablaZonas" prefHeight="320">
@@ -81,8 +87,8 @@
         </Tab>
 
         <Tab text="Atracciones">
-            <VBox spacing="8">
-                <padding><Insets top="8" right="8" bottom="8" left="8"/></padding>
+            <VBox spacing="8" style="-fx-background-color: white; -fx-background-radius: 8;">
+                <padding><Insets top="12" right="12" bottom="12" left="12"/></padding>
                 <Label text="Nueva atraccion:"/>
                 <GridPane hgap="8" vgap="5">
                     <Label text="ID:"          GridPane.rowIndex="0" GridPane.columnIndex="0"/>
@@ -103,8 +109,10 @@
                     <TextField fx:id="txtAtrCosto"   GridPane.rowIndex="3" GridPane.columnIndex="3"/>
                 </GridPane>
                 <HBox spacing="8">
-                    <Button text="Agregar"  onAction="#onGuardarAtraccion"/>
-                    <Button text="Eliminar" onAction="#onEliminarAtraccion"/>
+                    <Button text="Agregar"  onAction="#onGuardarAtraccion"
+                            style="-fx-background-color: #0071e3; -fx-text-fill: white; -fx-background-radius: 6;"/>
+                    <Button text="Eliminar" onAction="#onEliminarAtraccion"
+                            style="-fx-background-color: #ff3b30; -fx-text-fill: white; -fx-background-radius: 6;"/>
                     <Label fx:id="lblAtrMsg"/>
                 </HBox>
                 <TableView fx:id="tablaAtracciones" prefHeight="240">
@@ -133,8 +141,8 @@
         </Tab>
 
         <Tab text="Reportes">
-            <VBox spacing="8">
-                <padding><Insets top="8" right="8" bottom="8" left="8"/></padding>
+            <VBox spacing="8" style="-fx-background-color: white; -fx-background-radius: 8;">
+                <padding><Insets top="12" right="12" bottom="12" left="12"/></padding>
                 <Button text="Generar reporte diario" onAction="#onGenerarReporte"/>
                 <TextArea fx:id="txtReporte" editable="false" wrapText="true" prefHeight="500"/>
             </VBox>

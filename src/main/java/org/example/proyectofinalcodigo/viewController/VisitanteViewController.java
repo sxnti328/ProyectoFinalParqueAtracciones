@@ -35,9 +35,13 @@ public class VisitanteViewController {
     @FXML private Label lblDescuentoInfo;
     @FXML private Label lblNumIntegrantes;
     @FXML private Label lblTicketMsg;
+    @FXML private Label lblPrecioTicket;
     @FXML private ComboBox<TipoTicket> cbTipoTicket;
-    @FXML private TextField txtPrecioTicket;
     @FXML private TextField txtNumIntegrantes;
+
+    private static final double PRECIO_GENERAL   = 25000;
+    private static final double PRECIO_FAMILIAR  = 45000;
+    private static final double PRECIO_FAST_PASS = 60000;
 
     public void setApp(App app) {
         this.app = app;
@@ -177,6 +181,19 @@ public class VisitanteViewController {
         lblNumIntegrantes.setManaged(familiar);
         txtNumIntegrantes.setVisible(familiar);
         txtNumIntegrantes.setManaged(familiar);
+
+        if (tipo != null) {
+            double precio = getPrecioFijo(tipo);
+            lblPrecioTicket.setText("$" + String.format("%.0f", precio));
+        }
+    }
+
+    private double getPrecioFijo(TipoTicket tipo) {
+        switch (tipo) {
+            case FAMILIAR:  return PRECIO_FAMILIAR;
+            case FAST_PASS: return PRECIO_FAST_PASS;
+            default:        return PRECIO_GENERAL;
+        }
     }
 
     @FXML
@@ -189,19 +206,20 @@ public class VisitanteViewController {
 
         TipoTicket tipo = cbTipoTicket.getValue();
 
+        double precio = getPrecioFijo(tipo);
+        int integrantes = 1;
         try {
-            double precio = Double.parseDouble(txtPrecioTicket.getText().trim());
-            int integrantes = 1;
             if (tipo == TipoTicket.FAMILIAR) {
                 integrantes = Integer.parseInt(txtNumIntegrantes.getText().trim());
             }
-
-            String resultado = controlador.comprarTicket(
-                    seleccionado.getDocumento(), tipo, precio, integrantes);
-            lblTicketMsg.setText(resultado);
-            refrescarTabla();
         } catch (NumberFormatException e) {
-            lblTicketMsg.setText("Verifica que el precio sea un número válido.");
+            lblTicketMsg.setText("Numero de integrantes invalido.");
+            return;
         }
+
+        String resultado = controlador.comprarTicket(
+                seleccionado.getDocumento(), tipo, precio, integrantes);
+        lblTicketMsg.setText(resultado);
+        refrescarTabla();
     }
 }

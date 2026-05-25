@@ -93,7 +93,8 @@
                     <Label text="Tipo:"/>
                     <ComboBox fx:id="cbTipoTicket" prefWidth="130" onAction="#onCambiarTipoTicket"/>
                     <Label text="Precio:"/>
-                    <TextField fx:id="txtPrecioTicket" prefWidth="100" promptText="0.00"/>
+                    <Label fx:id="lblPrecioTicket" text="---"
+                           style="-fx-font-weight: bold; -fx-text-fill: #0071e3; -fx-min-width: 80;"/>
                     <Label fx:id="lblNumIntegrantes" text="Integrantes:"
                            visible="false" managed="false"/>
                     <TextField fx:id="txtNumIntegrantes" prefWidth="80"

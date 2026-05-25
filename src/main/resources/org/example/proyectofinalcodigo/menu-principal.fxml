@@ -29,14 +29,14 @@
             <Button text="Panel de Operador"
                     onAction="#irAOperador"
                     maxWidth="Infinity" prefHeight="42"
-                    style="-fx-background-color: #e8e8ed; -fx-text-fill: #1d1d1f;
+                    style="-fx-background-color: #0071e3; -fx-text-fill: white;
                            -fx-font-size: 14px; -fx-background-radius: 10;
                            -fx-cursor: hand;"/>
 
             <Button text="Administracion"
                     onAction="#irAAdmin"
                     maxWidth="Infinity" prefHeight="42"
-                    style="-fx-background-color: #e8e8ed; -fx-text-fill: #1d1d1f;
+                    style="-fx-background-color: #0071e3; -fx-text-fill: white;
                            -fx-font-size: 14px; -fx-background-radius: 10;
                            -fx-cursor: hand;"/>
 
