@@ -1,10 +1,13 @@
 package org.example.proyectofinalcodigo.controller;
 
+import org.example.proyectofinalcodigo.model.clases.Atraccion;
 import org.example.proyectofinalcodigo.model.clases.ParqueDeAtraccion;
 import org.example.proyectofinalcodigo.model.clases.Visitante;
 import org.example.proyectofinalcodigo.model.enums.TipoTicket;
+import org.example.proyectofinalcodigo.model.records.Notificacion;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class VisitanteController {
 
@@ -35,5 +38,29 @@ public class VisitanteController {
 
     public ArrayList<Visitante> getVisitantes() {
         return parque.getListVisitante();
+    }
+
+    public void agregarFavorita(String docVisitante, String idAtraccion) {
+        Visitante v = parque.buscarVisitante(docVisitante);
+        if (v != null) v.agregarFavorita(idAtraccion);
+    }
+
+    public ArrayList<String> getFavoritas(String docVisitante) {
+        Visitante v = parque.buscarVisitante(docVisitante);
+        if (v == null) return new ArrayList<>();
+        return v.getListaFavoritas();
+    }
+
+    public String getNotificacionesTexto(String docVisitante) {
+        Visitante v = parque.buscarVisitante(docVisitante);
+        if (v == null || v.getListNotificaciones().isEmpty()) return "Sin notificaciones.";
+        StringBuilder sb = new StringBuilder();
+        for (Notificacion n : v.getListNotificaciones())
+            sb.append("[").append(n.tipo()).append("] ").append(n.mensaje()).append("\n");
+        return sb.toString().trim();
+    }
+
+    public List<Atraccion> getTodasAtracciones() {
+        return parque.getTodasLasAtracciones();
     }
 }

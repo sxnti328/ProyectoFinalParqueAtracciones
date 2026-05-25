@@ -3,7 +3,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.geometry.Insets?>
 
-<VBox spacing="10" prefWidth="950" prefHeight="700"
+<VBox spacing="10" prefWidth="950" prefHeight="840"
       xmlns="http://javafx.com/javafx/21"
       xmlns:fx="http://javafx.com/fxml/1"
       fx:controller="org.example.proyectofinalcodigo.viewController.VisitanteViewController"
@@ -17,6 +17,9 @@
         <Label text="Gestion de Visitantes"
                style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
         <Region HBox.hgrow="ALWAYS"/>
+        <Button text="Ver Mapa" onAction="#onVerMapa"
+                style="-fx-background-color: #34c759; -fx-text-fill: white;
+                       -fx-background-radius: 7; -fx-font-size: 12px;"/>
         <Label fx:id="lblNotificacion" text=""
                visible="false" managed="false"
                wrapText="true" maxWidth="280"
@@ -104,6 +107,29 @@
                 </HBox>
                 <Label fx:id="lblDescuentoInfo" text="" style="-fx-text-fill: #2a7a2a; -fx-font-size: 11px;"/>
                 <Label fx:id="lblTicketMsg"     text="" style="-fx-font-size: 11px;"/>
+            </VBox>
+
+            <!-- favoritas -->
+            <VBox spacing="6"
+                  style="-fx-background-color: white; -fx-padding: 12; -fx-background-radius: 10;">
+                <Label text="Atracciones favoritas"
+                       style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #555;"/>
+                <HBox spacing="8" alignment="CENTER_LEFT">
+                    <ComboBox fx:id="cbAtraccionFav" prefWidth="200"/>
+                    <Button text="Agregar favorita" onAction="#onAgregarFavorita"
+                            style="-fx-background-color: #0071e3; -fx-text-fill: white; -fx-background-radius: 7;"/>
+                </HBox>
+                <Label fx:id="lblFavoritas" text="Sin favoritas" wrapText="true"
+                       style="-fx-text-fill: #555; -fx-font-size: 11px;"/>
+            </VBox>
+
+            <!-- notificaciones -->
+            <VBox spacing="6"
+                  style="-fx-background-color: white; -fx-padding: 12; -fx-background-radius: 10;">
+                <Label text="Notificaciones"
+                       style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #555;"/>
+                <TextArea fx:id="txtNotificaciones" editable="false" wrapText="true" prefHeight="75"
+                          promptText="Selecciona un visitante para ver sus notificaciones"/>
             </VBox>
 
         </VBox>

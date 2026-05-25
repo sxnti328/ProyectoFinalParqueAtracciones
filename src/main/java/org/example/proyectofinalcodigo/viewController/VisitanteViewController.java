@@ -2,10 +2,15 @@ package org.example.proyectofinalcodigo.viewController;
 
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.stage.Stage;
 import org.example.proyectofinalcodigo.App;
 import org.example.proyectofinalcodigo.controller.VisitanteController;
+import org.example.proyectofinalcodigo.model.clases.Atraccion;
 import org.example.proyectofinalcodigo.model.clases.Visitante;
 import org.example.proyectofinalcodigo.model.enums.TipoTicket;
 
@@ -39,6 +44,10 @@ public class VisitanteViewController {
     @FXML private ComboBox<TipoTicket> cbTipoTicket;
     @FXML private TextField txtNumIntegrantes;
 
+    @FXML private ComboBox<Atraccion> cbAtraccionFav;
+    @FXML private Label               lblFavoritas;
+    @FXML private TextArea            txtNotificaciones;
+
     private static final double PRECIO_GENERAL   = 25000;
     private static final double PRECIO_FAMILIAR  = 45000;
     private static final double PRECIO_FAST_PASS = 60000;
@@ -46,6 +55,8 @@ public class VisitanteViewController {
     public void setApp(App app) {
         this.app = app;
         this.controlador = new VisitanteController(app.parque);
+
+        cbAtraccionFav.setItems(FXCollections.observableArrayList(controlador.getTodasAtracciones()));
 
         tablaVisitantes.getSelectionModel().selectedItemProperty().addListener(
                 (obs, anterior, seleccionado) -> {
@@ -84,6 +95,11 @@ public class VisitanteViewController {
         txtTelefono.setText(v.getTelefono());
         txtDireccion.setText(v.getDireccion());
         txtEstatura.setText(String.valueOf(v.getEstatura()));
+
+        var favs = controlador.getFavoritas(v.getDocumento());
+        lblFavoritas.setText(favs.isEmpty() ? "Sin favoritas" : String.join(", ", favs));
+
+        txtNotificaciones.setText(controlador.getNotificacionesTexto(v.getDocumento()));
     }
 
     private void limpiarCampos() {
@@ -93,6 +109,8 @@ public class VisitanteViewController {
         txtTelefono.clear();
         txtDireccion.clear();
         txtEstatura.clear();
+        lblFavoritas.setText("Sin favoritas");
+        txtNotificaciones.clear();
         tablaVisitantes.getSelectionModel().clearSelection();
     }
 
@@ -222,5 +240,42 @@ public class VisitanteViewController {
                 seleccionado.getDocumento(), tipo, precio, integrantes);
         lblTicketMsg.setText(resultado);
         refrescarTabla();
+    }
+
+    @FXML
+    private void onVerMapa() {
+        var url = getClass().getResource("/org/example/proyectofinalcodigo/mapa_parque.png");
+        if (url == null) {
+            lblMensaje.setText("Imagen del mapa no encontrada en recursos.");
+            return;
+        }
+        ImageView img = new ImageView(new Image(url.toExternalForm()));
+        img.setFitWidth(860);
+        img.setPreserveRatio(true);
+
+        ScrollPane scroll = new ScrollPane(img);
+        scroll.setFitToWidth(true);
+
+        Stage ventana = new Stage();
+        ventana.setTitle("Mapa del parque - Tech-Park UQ");
+        ventana.setScene(new Scene(scroll, 880, 640));
+        ventana.show();
+    }
+
+    @FXML
+    private void onAgregarFavorita() {
+        Visitante sel = tablaVisitantes.getSelectionModel().getSelectedItem();
+        if (sel == null) {
+            lblFavoritas.setText("Selecciona un visitante primero.");
+            return;
+        }
+        Atraccion a = cbAtraccionFav.getValue();
+        if (a == null) {
+            lblFavoritas.setText("Selecciona una atraccion.");
+            return;
+        }
+        controlador.agregarFavorita(sel.getDocumento(), a.getId());
+        var favs = controlador.getFavoritas(sel.getDocumento());
+        lblFavoritas.setText(String.join(", ", favs));
     }
 }

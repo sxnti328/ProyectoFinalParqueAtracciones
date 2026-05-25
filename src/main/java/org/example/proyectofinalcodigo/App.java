@@ -54,7 +54,7 @@ public class App extends Application {
             Parent root = loader.load();
             VisitanteViewController vc = loader.getController();
             vc.setApp(this);
-            cambiarVista(root);
+            stage.setScene(new Scene(root, 950, 840));
         } catch (Exception e) {
             e.printStackTrace();
         }
