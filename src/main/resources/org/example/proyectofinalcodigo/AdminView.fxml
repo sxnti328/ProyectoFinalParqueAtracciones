@@ -3,49 +3,80 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.geometry.Insets?>
 
-<VBox spacing="8" prefWidth="900" prefHeight="650"
+<VBox spacing="0" prefWidth="950" prefHeight="700"
       xmlns="http://javafx.com/javafx/21"
       xmlns:fx="http://javafx.com/fxml/1"
       fx:controller="org.example.proyectofinalcodigo.viewController.AdminViewController"
-      style="-fx-background-color: #f5f5f7;">
+      style="-fx-background-color: #f0f4f8;">
 
-    <padding><Insets top="10" right="10" bottom="10" left="10"/></padding>
-
-    <HBox spacing="12" alignment="CENTER_LEFT">
-        <Button text="&lt; Volver" onAction="#onVolver"/>
+    <!-- Barra de cabecera -->
+    <HBox spacing="12" alignment="CENTER_LEFT" prefHeight="54"
+          style="-fx-background-color: #ff9f0a; -fx-padding: 0 18 0 18;">
+        <Button text="&lt; Volver" onAction="#onVolver"
+                style="-fx-background-color: rgba(255,255,255,0.22); -fx-text-fill: white;
+                       -fx-background-radius: 8; -fx-cursor: hand; -fx-font-size: 12px;"/>
         <Label text="Panel Administrador"
-               style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
+               style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: white;"/>
     </HBox>
 
-    <TabPane VBox.vgrow="ALWAYS" tabClosingPolicy="UNAVAILABLE">
+    <!-- Tabs -->
+    <TabPane VBox.vgrow="ALWAYS" tabClosingPolicy="UNAVAILABLE"
+             style="-fx-padding: 10 14 14 14; -fx-tab-min-height: 30;
+                    -fx-background-color: transparent;">
 
+        <!-- TAB: Operadores -->
         <Tab text="Operadores">
-            <VBox spacing="8" style="-fx-background-color: white; -fx-background-radius: 8;">
-                <padding><Insets top="12" right="12" bottom="12" left="12"/></padding>
-                <Label text="Nuevo operador:"/>
-                <GridPane hgap="8" vgap="5">
-                    <Label text="Nombre:"      GridPane.rowIndex="0" GridPane.columnIndex="0"/>
-                    <TextField fx:id="txtOpNombre"    GridPane.rowIndex="0" GridPane.columnIndex="1"/>
-                    <Label text="Documento:"   GridPane.rowIndex="0" GridPane.columnIndex="2"/>
-                    <TextField fx:id="txtOpDocumento" GridPane.rowIndex="0" GridPane.columnIndex="3"/>
-                    <Label text="Edad:"        GridPane.rowIndex="1" GridPane.columnIndex="0"/>
-                    <TextField fx:id="txtOpEdad"      GridPane.rowIndex="1" GridPane.columnIndex="1"/>
-                    <Label text="ID empleado:" GridPane.rowIndex="1" GridPane.columnIndex="2"/>
-                    <TextField fx:id="txtOpIdEmp"     GridPane.rowIndex="1" GridPane.columnIndex="3"/>
-                    <Label text="Turno:"       GridPane.rowIndex="2" GridPane.columnIndex="0"/>
-                    <TextField fx:id="txtOpTurno"     GridPane.rowIndex="2" GridPane.columnIndex="1"/>
-                    <Label text="Zona:"        GridPane.rowIndex="2" GridPane.columnIndex="2"/>
-                    <ComboBox fx:id="cbOpZona"        GridPane.rowIndex="2" GridPane.columnIndex="3" prefWidth="150"/>
+            <VBox spacing="10"
+                  style="-fx-background-color: white; -fx-background-radius: 10;
+                         -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.07), 6, 0, 0, 2);">
+                <padding><Insets top="14" right="14" bottom="14" left="14"/></padding>
+
+                <Label text="Nuevo operador"
+                       style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #111827;
+                              -fx-border-color: #ff9f0a; -fx-border-width: 0 0 0 3;
+                              -fx-padding: 0 0 0 8;"/>
+
+                <GridPane hgap="10" vgap="7">
+                    <Label text="Nombre:"      GridPane.rowIndex="0" GridPane.columnIndex="0"
+                           style="-fx-text-fill: #6b7280; -fx-font-size: 12px;"/>
+                    <TextField fx:id="txtOpNombre"    GridPane.rowIndex="0" GridPane.columnIndex="1"
+                               promptText="Nombre completo" prefWidth="160"/>
+                    <Label text="Documento:"   GridPane.rowIndex="0" GridPane.columnIndex="2"
+                           style="-fx-text-fill: #6b7280; -fx-font-size: 12px;"/>
+                    <TextField fx:id="txtOpDocumento" GridPane.rowIndex="0" GridPane.columnIndex="3"
+                               promptText="Numero doc." prefWidth="140"/>
+                    <Label text="Edad:"        GridPane.rowIndex="1" GridPane.columnIndex="0"
+                           style="-fx-text-fill: #6b7280; -fx-font-size: 12px;"/>
+                    <TextField fx:id="txtOpEdad"      GridPane.rowIndex="1" GridPane.columnIndex="1"
+                               promptText="Edad" prefWidth="160"/>
+                    <Label text="ID empleado:" GridPane.rowIndex="1" GridPane.columnIndex="2"
+                           style="-fx-text-fill: #6b7280; -fx-font-size: 12px;"/>
+                    <TextField fx:id="txtOpIdEmp"     GridPane.rowIndex="1" GridPane.columnIndex="3"
+                               promptText="Ej: EMP06" prefWidth="140"/>
+                    <Label text="Turno:"       GridPane.rowIndex="2" GridPane.columnIndex="0"
+                           style="-fx-text-fill: #6b7280; -fx-font-size: 12px;"/>
+                    <TextField fx:id="txtOpTurno"     GridPane.rowIndex="2" GridPane.columnIndex="1"
+                               promptText="Manana / Tarde" prefWidth="160"/>
+                    <Label text="Zona:"        GridPane.rowIndex="2" GridPane.columnIndex="2"
+                           style="-fx-text-fill: #6b7280; -fx-font-size: 12px;"/>
+                    <ComboBox fx:id="cbOpZona" GridPane.rowIndex="2" GridPane.columnIndex="3"
+                              prefWidth="160"/>
                 </GridPane>
-                <HBox spacing="8">
+
+                <HBox spacing="8" alignment="CENTER_LEFT">
                     <Button text="Agregar"    onAction="#onGuardarOperador"
-                            style="-fx-background-color: #0071e3; -fx-text-fill: white; -fx-background-radius: 6;"/>
+                            style="-fx-background-color: #0071e3; -fx-text-fill: white;
+                                   -fx-background-radius: 7; -fx-cursor: hand; -fx-font-weight: bold;"/>
                     <Button text="Actualizar" onAction="#onActualizarOperador"
-                            style="-fx-background-color: #0071e3; -fx-text-fill: white; -fx-background-radius: 6;"/>
+                            style="-fx-background-color: #e5e7eb; -fx-text-fill: #374151;
+                                   -fx-background-radius: 7; -fx-cursor: hand;"/>
                     <Button text="Eliminar"   onAction="#onEliminarOperador"
-                            style="-fx-background-color: #ff3b30; -fx-text-fill: white; -fx-background-radius: 6;"/>
-                    <Label fx:id="lblOpMsg"/>
+                            style="-fx-background-color: #ff3b30; -fx-text-fill: white;
+                                   -fx-background-radius: 7; -fx-cursor: hand;"/>
+                    <Label fx:id="lblOpMsg"
+                           style="-fx-font-size: 11px; -fx-text-fill: #374151;"/>
                 </HBox>
+
                 <TableView fx:id="tablaOperadores" prefHeight="280">
                     <columns>
                         <TableColumn fx:id="colOpNombre" text="Nombre"    prefWidth="150"/>
@@ -53,115 +84,212 @@
                         <TableColumn fx:id="colOpEdad"   text="Edad"      prefWidth="55"/>
                         <TableColumn fx:id="colOpIdEmp"  text="ID Emp"    prefWidth="90"/>
                         <TableColumn fx:id="colOpTurno"  text="Turno"     prefWidth="100"/>
-                        <TableColumn fx:id="colOpZona"   text="Zona"      prefWidth="90"/>
+                        <TableColumn fx:id="colOpZona"   text="Zona"      prefWidth="110"/>
                     </columns>
                 </TableView>
             </VBox>
         </Tab>
 
+        <!-- TAB: Zonas -->
         <Tab text="Zonas">
-            <VBox spacing="8" style="-fx-background-color: white; -fx-background-radius: 8;">
-                <padding><Insets top="12" right="12" bottom="12" left="12"/></padding>
-                <Label text="Nueva zona:"/>
-                <GridPane hgap="8" vgap="5">
-                    <Label text="ID:"          GridPane.rowIndex="0" GridPane.columnIndex="0"/>
-                    <TextField fx:id="txtZonaId"     GridPane.rowIndex="0" GridPane.columnIndex="1"/>
-                    <Label text="Nombre:"      GridPane.rowIndex="0" GridPane.columnIndex="2"/>
-                    <TextField fx:id="txtZonaNombre" GridPane.rowIndex="0" GridPane.columnIndex="3"/>
-                    <Label text="Descripcion:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
-                    <TextField fx:id="txtZonaDesc"   GridPane.rowIndex="1" GridPane.columnIndex="1"/>
-                    <Label text="Capacidad:"   GridPane.rowIndex="1" GridPane.columnIndex="2"/>
-                    <TextField fx:id="txtZonaCap"    GridPane.rowIndex="1" GridPane.columnIndex="3"/>
+            <VBox spacing="10"
+                  style="-fx-background-color: white; -fx-background-radius: 10;
+                         -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.07), 6, 0, 0, 2);">
+                <padding><Insets top="14" right="14" bottom="14" left="14"/></padding>
+
+                <Label text="Nueva zona"
+                       style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #111827;
+                              -fx-border-color: #ff9f0a; -fx-border-width: 0 0 0 3;
+                              -fx-padding: 0 0 0 8;"/>
+
+                <GridPane hgap="10" vgap="7">
+                    <Label text="ID:"          GridPane.rowIndex="0" GridPane.columnIndex="0"
+                           style="-fx-text-fill: #6b7280; -fx-font-size: 12px;"/>
+                    <TextField fx:id="txtZonaId"     GridPane.rowIndex="0" GridPane.columnIndex="1"
+                               promptText="Ej: Z06" prefWidth="160"/>
+                    <Label text="Nombre:"      GridPane.rowIndex="0" GridPane.columnIndex="2"
+                           style="-fx-text-fill: #6b7280; -fx-font-size: 12px;"/>
+                    <TextField fx:id="txtZonaNombre" GridPane.rowIndex="0" GridPane.columnIndex="3"
+                               promptText="Nombre de la zona" prefWidth="160"/>
+                    <Label text="Descripcion:" GridPane.rowIndex="1" GridPane.columnIndex="0"
+                           style="-fx-text-fill: #6b7280; -fx-font-size: 12px;"/>
+                    <TextField fx:id="txtZonaDesc"   GridPane.rowIndex="1" GridPane.columnIndex="1"
+                               promptText="Descripcion" prefWidth="160"/>
+                    <Label text="Capacidad:"   GridPane.rowIndex="1" GridPane.columnIndex="2"
+                           style="-fx-text-fill: #6b7280; -fx-font-size: 12px;"/>
+                    <TextField fx:id="txtZonaCap"    GridPane.rowIndex="1" GridPane.columnIndex="3"
+                               promptText="Personas max." prefWidth="160"/>
                 </GridPane>
-                <HBox spacing="8">
+
+                <HBox spacing="8" alignment="CENTER_LEFT">
                     <Button text="Agregar"    onAction="#onGuardarZona"
-                            style="-fx-background-color: #0071e3; -fx-text-fill: white; -fx-background-radius: 6;"/>
+                            style="-fx-background-color: #0071e3; -fx-text-fill: white;
+                                   -fx-background-radius: 7; -fx-cursor: hand; -fx-font-weight: bold;"/>
                     <Button text="Actualizar" onAction="#onActualizarZona"
-                            style="-fx-background-color: #0071e3; -fx-text-fill: white; -fx-background-radius: 6;"/>
+                            style="-fx-background-color: #e5e7eb; -fx-text-fill: #374151;
+                                   -fx-background-radius: 7; -fx-cursor: hand;"/>
                     <Button text="Eliminar"   onAction="#onEliminarZona"
-                            style="-fx-background-color: #ff3b30; -fx-text-fill: white; -fx-background-radius: 6;"/>
-                    <Label fx:id="lblZonaMsg"/>
+                            style="-fx-background-color: #ff3b30; -fx-text-fill: white;
+                                   -fx-background-radius: 7; -fx-cursor: hand;"/>
+                    <Label fx:id="lblZonaMsg"
+                           style="-fx-font-size: 11px; -fx-text-fill: #374151;"/>
                 </HBox>
-                <TableView fx:id="tablaZonas" prefHeight="320">
+
+                <TableView fx:id="tablaZonas" prefHeight="340">
                     <columns>
                         <TableColumn fx:id="colZonaId"     text="ID"          prefWidth="75"/>
                         <TableColumn fx:id="colZonaNombre" text="Nombre"      prefWidth="160"/>
-                        <TableColumn fx:id="colZonaDesc"   text="Descripcion" prefWidth="250"/>
+                        <TableColumn fx:id="colZonaDesc"   text="Descripcion" prefWidth="280"/>
                         <TableColumn fx:id="colZonaCap"    text="Capacidad"   prefWidth="90"/>
                     </columns>
                 </TableView>
             </VBox>
         </Tab>
 
+        <!-- TAB: Atracciones -->
         <Tab text="Atracciones">
-            <VBox spacing="8" style="-fx-background-color: white; -fx-background-radius: 8;">
-                <padding><Insets top="12" right="12" bottom="12" left="12"/></padding>
-                <Label text="Nueva atraccion:"/>
-                <GridPane hgap="8" vgap="5">
-                    <Label text="ID:"          GridPane.rowIndex="0" GridPane.columnIndex="0"/>
-                    <TextField fx:id="txtAtrId"      GridPane.rowIndex="0" GridPane.columnIndex="1"/>
-                    <Label text="Nombre:"      GridPane.rowIndex="0" GridPane.columnIndex="2"/>
-                    <TextField fx:id="txtAtrNombre"  GridPane.rowIndex="0" GridPane.columnIndex="3"/>
-                    <Label text="Tipo:"        GridPane.rowIndex="1" GridPane.columnIndex="0"/>
-                    <ComboBox fx:id="cbAtrTipo"      GridPane.rowIndex="1" GridPane.columnIndex="1" prefWidth="150"/>
-                    <Label text="Zona:"        GridPane.rowIndex="1" GridPane.columnIndex="2"/>
-                    <ComboBox fx:id="cbAtrZona"      GridPane.rowIndex="1" GridPane.columnIndex="3" prefWidth="150"/>
-                    <Label text="Capacidad:"   GridPane.rowIndex="2" GridPane.columnIndex="0"/>
-                    <TextField fx:id="txtAtrCap"     GridPane.rowIndex="2" GridPane.columnIndex="1"/>
-                    <Label text="Altura min:"  GridPane.rowIndex="2" GridPane.columnIndex="2"/>
-                    <TextField fx:id="txtAtrAltura"  GridPane.rowIndex="2" GridPane.columnIndex="3"/>
-                    <Label text="Edad min:"    GridPane.rowIndex="3" GridPane.columnIndex="0"/>
-                    <TextField fx:id="txtAtrEdad"    GridPane.rowIndex="3" GridPane.columnIndex="1"/>
-                    <Label text="Costo:"       GridPane.rowIndex="3" GridPane.columnIndex="2"/>
-                    <TextField fx:id="txtAtrCosto"   GridPane.rowIndex="3" GridPane.columnIndex="3"/>
+            <VBox spacing="10"
+                  style="-fx-background-color: white; -fx-background-radius: 10;
+                         -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.07), 6, 0, 0, 2);">
+                <padding><Insets top="14" right="14" bottom="14" left="14"/></padding>
+
+                <Label text="Nueva atraccion"
+                       style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #111827;
+                              -fx-border-color: #ff9f0a; -fx-border-width: 0 0 0 3;
+                              -fx-padding: 0 0 0 8;"/>
+
+                <GridPane hgap="10" vgap="7">
+                    <Label text="ID:"          GridPane.rowIndex="0" GridPane.columnIndex="0"
+                           style="-fx-text-fill: #6b7280; -fx-font-size: 12px;"/>
+                    <TextField fx:id="txtAtrId"      GridPane.rowIndex="0" GridPane.columnIndex="1"
+                               promptText="Ej: A10" prefWidth="150"/>
+                    <Label text="Nombre:"      GridPane.rowIndex="0" GridPane.columnIndex="2"
+                           style="-fx-text-fill: #6b7280; -fx-font-size: 12px;"/>
+                    <TextField fx:id="txtAtrNombre"  GridPane.rowIndex="0" GridPane.columnIndex="3"
+                               promptText="Nombre atraccion" prefWidth="150"/>
+                    <Label text="Tipo:"        GridPane.rowIndex="1" GridPane.columnIndex="0"
+                           style="-fx-text-fill: #6b7280; -fx-font-size: 12px;"/>
+                    <ComboBox fx:id="cbAtrTipo"      GridPane.rowIndex="1" GridPane.columnIndex="1"
+                              prefWidth="155"/>
+                    <Label text="Zona:"        GridPane.rowIndex="1" GridPane.columnIndex="2"
+                           style="-fx-text-fill: #6b7280; -fx-font-size: 12px;"/>
+                    <ComboBox fx:id="cbAtrZona"      GridPane.rowIndex="1" GridPane.columnIndex="3"
+                              prefWidth="155"/>
+                    <Label text="Capacidad:"   GridPane.rowIndex="2" GridPane.columnIndex="0"
+                           style="-fx-text-fill: #6b7280; -fx-font-size: 12px;"/>
+                    <TextField fx:id="txtAtrCap"     GridPane.rowIndex="2" GridPane.columnIndex="1"
+                               promptText="Personas" prefWidth="150"/>
+                    <Label text="Altura min:"  GridPane.rowIndex="2" GridPane.columnIndex="2"
+                           style="-fx-text-fill: #6b7280; -fx-font-size: 12px;"/>
+                    <TextField fx:id="txtAtrAltura"  GridPane.rowIndex="2" GridPane.columnIndex="3"
+                               promptText="Ej: 1.40" prefWidth="150"/>
+                    <Label text="Edad min:"    GridPane.rowIndex="3" GridPane.columnIndex="0"
+                           style="-fx-text-fill: #6b7280; -fx-font-size: 12px;"/>
+                    <TextField fx:id="txtAtrEdad"    GridPane.rowIndex="3" GridPane.columnIndex="1"
+                               promptText="Anos" prefWidth="150"/>
+                    <Label text="Costo:"       GridPane.rowIndex="3" GridPane.columnIndex="2"
+                           style="-fx-text-fill: #6b7280; -fx-font-size: 12px;"/>
+                    <TextField fx:id="txtAtrCosto"   GridPane.rowIndex="3" GridPane.columnIndex="3"
+                               promptText="Ej: 5000" prefWidth="150"/>
                 </GridPane>
-                <HBox spacing="8">
+
+                <HBox spacing="8" alignment="CENTER_LEFT">
                     <Button text="Agregar"    onAction="#onGuardarAtraccion"
-                            style="-fx-background-color: #0071e3; -fx-text-fill: white; -fx-background-radius: 6;"/>
+                            style="-fx-background-color: #0071e3; -fx-text-fill: white;
+                                   -fx-background-radius: 7; -fx-cursor: hand; -fx-font-weight: bold;"/>
                     <Button text="Actualizar" onAction="#onActualizarAtraccion"
-                            style="-fx-background-color: #0071e3; -fx-text-fill: white; -fx-background-radius: 6;"/>
+                            style="-fx-background-color: #e5e7eb; -fx-text-fill: #374151;
+                                   -fx-background-radius: 7; -fx-cursor: hand;"/>
                     <Button text="Eliminar"   onAction="#onEliminarAtraccion"
-                            style="-fx-background-color: #ff3b30; -fx-text-fill: white; -fx-background-radius: 6;"/>
-                    <Label fx:id="lblAtrMsg"/>
+                            style="-fx-background-color: #ff3b30; -fx-text-fill: white;
+                                   -fx-background-radius: 7; -fx-cursor: hand;"/>
+                    <Label fx:id="lblAtrMsg"
+                           style="-fx-font-size: 11px; -fx-text-fill: #374151;"/>
                 </HBox>
-                <TableView fx:id="tablaAtracciones" prefHeight="240">
+
+                <TableView fx:id="tablaAtracciones" prefHeight="230">
                     <columns>
-                        <TableColumn fx:id="colAtrId"         text="ID"         prefWidth="70"/>
-                        <TableColumn fx:id="colAtrNombre"     text="Nombre"     prefWidth="130"/>
+                        <TableColumn fx:id="colAtrId"         text="ID"         prefWidth="60"/>
+                        <TableColumn fx:id="colAtrNombre"     text="Nombre"     prefWidth="120"/>
                         <TableColumn fx:id="colAtrTipo"       text="Tipo"       prefWidth="100"/>
-                        <TableColumn fx:id="colAtrZona"       text="Zona"       prefWidth="110"/>
+                        <TableColumn fx:id="colAtrZona"       text="Zona"       prefWidth="100"/>
                         <TableColumn fx:id="colAtrCap"        text="Capacidad"  prefWidth="75"/>
-                        <TableColumn fx:id="colAtrAltura"     text="Altura min" prefWidth="75"/>
-                        <TableColumn fx:id="colAtrEdadMin"    text="Edad min"   prefWidth="70"/>
-                        <TableColumn fx:id="colAtrCosto"      text="Costo"      prefWidth="75"/>
-                        <TableColumn fx:id="colAtrEstado"     text="Estado"     prefWidth="100"/>
+                        <TableColumn fx:id="colAtrAltura"     text="Alt. min"   prefWidth="65"/>
+                        <TableColumn fx:id="colAtrEdadMin"    text="Edad min"   prefWidth="65"/>
+                        <TableColumn fx:id="colAtrCosto"      text="Costo"      prefWidth="70"/>
+                        <TableColumn fx:id="colAtrEstado"     text="Estado"     prefWidth="90"/>
                         <TableColumn fx:id="colAtrVisitantes" text="Visitantes" prefWidth="80"/>
                     </columns>
                 </TableView>
             </VBox>
         </Tab>
 
+        <!-- TAB: Alertas -->
         <Tab text="Alertas">
-            <VBox spacing="10" alignment="CENTER">
-                <padding><Insets top="20" right="20" bottom="20" left="20"/></padding>
-                <Label text="Control de alertas climaticas"/>
-                <Label text="Al activar la alerta se cierran las atracciones acuaticas y mecanicas de altura."
-                       wrapText="true" prefWidth="500"/>
-                <HBox spacing="10" alignment="CENTER">
-                    <Button text="Activar alerta"    onAction="#onActivarAlerta"/>
-                    <Button text="Desactivar alerta" onAction="#onDesactivarAlerta"/>
-                </HBox>
-                <Label fx:id="lblAlertaMsg"/>
+            <VBox spacing="0" alignment="TOP_CENTER">
+                <padding><Insets top="40" right="40" bottom="40" left="40"/></padding>
+
+                <VBox spacing="14" alignment="CENTER" maxWidth="520"
+                      style="-fx-background-color: #fff8ec; -fx-background-radius: 12;
+                             -fx-border-color: #ff9f0a; -fx-border-width: 1.5;
+                             -fx-border-radius: 12; -fx-padding: 28 30 28 30;">
+
+                    <Label text="Alerta Climatica"
+                           style="-fx-font-size: 20px; -fx-font-weight: bold;
+                                  -fx-text-fill: #92400e;"/>
+
+                    <Label text="Al activar la alerta se cierran automaticamente las atracciones acuaticas y mecanicas de altura."
+                           wrapText="true" textAlignment="CENTER" maxWidth="400"
+                           style="-fx-text-fill: #78350f; -fx-font-size: 12px;"/>
+
+                    <HBox spacing="14" alignment="CENTER" style="-fx-padding: 6 0 0 0;">
+                        <Button text="Activar alerta" onAction="#onActivarAlerta"
+                                prefHeight="38" prefWidth="160"
+                                style="-fx-background-color: #dc2626; -fx-text-fill: white;
+                                       -fx-background-radius: 8; -fx-font-weight: bold;
+                                       -fx-cursor: hand;"/>
+                        <Button text="Desactivar alerta" onAction="#onDesactivarAlerta"
+                                prefHeight="38" prefWidth="160"
+                                style="-fx-background-color: #16a34a; -fx-text-fill: white;
+                                       -fx-background-radius: 8; -fx-font-weight: bold;
+                                       -fx-cursor: hand;"/>
+                    </HBox>
+
+                    <Label fx:id="lblAlertaMsg"
+                           style="-fx-font-size: 12px; -fx-font-weight: bold;
+                                  -fx-text-fill: #92400e;"/>
+                </VBox>
             </VBox>
         </Tab>
 
+        <!-- TAB: Reportes -->
         <Tab text="Reportes">
-            <VBox spacing="8" style="-fx-background-color: white; -fx-background-radius: 8;">
-                <padding><Insets top="12" right="12" bottom="12" left="12"/></padding>
-                <Button text="Generar reporte diario" onAction="#onGenerarReporte"/>
-                <TextArea fx:id="txtReporte" editable="false" wrapText="true" prefHeight="500"/>
+            <VBox spacing="10"
+                  style="-fx-background-color: white; -fx-background-radius: 10;
+                         -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.07), 6, 0, 0, 2);">
+                <padding><Insets top="14" right="14" bottom="14" left="14"/></padding>
+
+                <HBox alignment="CENTER_LEFT" spacing="10">
+                    <Label text="Reporte diario del parque"
+                           style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #111827;
+                                  -fx-border-color: #ff9f0a; -fx-border-width: 0 0 0 3;
+                                  -fx-padding: 0 0 0 8;"/>
+                    <Region HBox.hgrow="ALWAYS"/>
+                    <Button text="Generar reporte" onAction="#onGenerarReporte"
+                            style="-fx-background-color: #0071e3; -fx-text-fill: white;
+                                   -fx-background-radius: 8; -fx-cursor: hand;
+                                   -fx-font-weight: bold;"/>
+                </HBox>
+
+                <TextArea fx:id="txtReporte" editable="false" wrapText="true"
+                          prefHeight="500"
+                          promptText="Presiona 'Generar reporte' para ver el estado del parque..."
+                          style="-fx-font-family: monospace; -fx-font-size: 12px;
+                                 -fx-background-color: #f9fafb; -fx-border-color: #e5e7eb;
+                                 -fx-border-radius: 6; -fx-background-radius: 6;"/>
             </VBox>
         </Tab>
 
     </TabPane>
+
 </VBox>
