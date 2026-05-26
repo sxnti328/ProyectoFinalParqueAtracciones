@@ -39,4 +39,58 @@ class VisitanteTest {
         assertTrue(resultado);
         assertEquals(40000.0, visitante.getSaldoVirtual());
     }
+
+    @Test
+    void testDescontarSaldoInsuficienteRetornaFalseYNoModifica() {
+        boolean resultado = visitante.descontarSaldo(999999.0);
+        assertFalse(resultado);
+        assertEquals(50000.0, visitante.getSaldoVirtual());
+    }
+
+    @Test
+    void testRecargarSaldoNegativoNoModificaSaldo() {
+        visitante.recargarSaldo(-5000.0);
+        assertEquals(50000.0, visitante.getSaldoVirtual());
+    }
+
+    @Test
+    void testAgregarFavorita() {
+        visitante.agregarFavorita("A001");
+        assertTrue(visitante.tieneFavorita("A001"));
+    }
+
+    @Test
+    void testNoDuplicaFavorita() {
+        visitante.agregarFavorita("A001");
+        visitante.agregarFavorita("A001");
+        assertEquals(1, visitante.getListaFavoritas().size());
+    }
+
+    @Test
+    void testEliminarFavorita() {
+        visitante.agregarFavorita("A001");
+        visitante.eliminarFavorita("A001");
+        assertFalse(visitante.tieneFavorita("A001"));
+    }
+
+    @Test
+    void testTieneFastPassConTicketActivo() {
+        TicketFastPass fp = new TicketFastPass("FP01", 120000.0);
+        visitante.comprarTicket(fp);
+        assertTrue(visitante.tieneFastPass());
+    }
+
+    @Test
+    void testAgregarNotificacionSeGuardaEnLaLista() {
+        org.example.proyectofinalcodigo.model.records.Notificacion n =
+                new org.example.proyectofinalcodigo.model.records.Notificacion(
+                        "AVISO", "Bienvenido al parque", java.time.LocalDate.now());
+        visitante.agregarNotificacion(n);
+        assertEquals(1, visitante.getListNotificaciones().size());
+    }
+
+    @Test
+    void testGetTicketActivoRetornaNullSinTickets() {
+        assertNull(visitante.getTicketActivo());
+    }
 }
