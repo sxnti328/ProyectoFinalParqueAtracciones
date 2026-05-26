@@ -63,4 +63,12 @@ public class VisitanteController {
     public List<Atraccion> getTodasAtracciones() {
         return parque.getTodasLasAtracciones();
     }
+
+    public String getAforoParque() {
+        return parque.getVisitantesActuales() + " / " + parque.getCapacidadMax();
+    }
+
+    public boolean parqueLleno() {
+        return parque.getVisitantesActuales() >= parque.getCapacidadMax();
+    }
 }

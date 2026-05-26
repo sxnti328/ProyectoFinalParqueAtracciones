@@ -7,9 +7,9 @@ import java.util.List;
 public class Reporte {
     private String    titulo;
     private LocalDate fecha;
-    private double    ingresosDiarios;
-    private int       totalVisitantes;
-    private double    tiempoPromedioEspera;
+    private double ingresosDiarios;
+    private int totalVisitantes;
+    private double  tiempoPromedioEspera;
     private List<Atraccion> atraccionesMasVisitadas;
     private List<Atraccion> atraccionesEnMantenimiento;
     private List<Atraccion> atraccionesCerradasPorClima;

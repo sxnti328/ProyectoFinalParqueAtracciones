@@ -57,6 +57,8 @@ public class Atraccion implements IAccesible {
             return false;
         if (visitante.getEdad() < edadMinima)
             return false;
+        if (colaVirtual.getTotalElementos() >= capacidadMaxima)
+            return false;
         return true;
     }
 
@@ -72,6 +74,8 @@ public class Atraccion implements IAccesible {
 
     @Override
     public String registrarIngreso(Visitante visitante) {
+        if (colaVirtual.getTotalElementos() >= capacidadMaxima)
+            return "Atraccion llena. Capacidad maxima: " + capacidadMaxima + " personas.";
         if (!verificarAcceso(visitante))
             return "Acceso denegado: atraccion no disponible estatura o edad insuficiente.";
 

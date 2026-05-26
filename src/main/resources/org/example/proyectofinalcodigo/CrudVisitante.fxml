@@ -18,6 +18,8 @@
         <Label text="Gestion de Visitantes"
                style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: white;"/>
         <Region HBox.hgrow="ALWAYS"/>
+        <Label fx:id="lblAforo" text="Aforo: 0/500"
+               style="-fx-text-fill: white; -fx-font-size: 12px;"/>
         <Button text="Ver Mapa" onAction="#onVerMapa"
                 style="-fx-background-color: rgba(255,255,255,0.22); -fx-text-fill: white;
                        -fx-background-radius: 8; -fx-cursor: hand; -fx-font-size: 12px;
@@ -58,7 +60,7 @@
                 <Label text="Edad:"       GridPane.rowIndex="2" GridPane.columnIndex="0"
                        style="-fx-text-fill: #6b7280; -fx-font-size: 12px;"/>
                 <TextField fx:id="txtEdad"      GridPane.rowIndex="2" GridPane.columnIndex="1"
-                           promptText="Anos"/>
+                           promptText="Años"/>
                 <Label text="Telefono:"   GridPane.rowIndex="3" GridPane.columnIndex="0"
                        style="-fx-text-fill: #6b7280; -fx-font-size: 12px;"/>
                 <TextField fx:id="txtTelefono"  GridPane.rowIndex="3" GridPane.columnIndex="1"

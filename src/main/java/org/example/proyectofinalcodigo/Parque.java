@@ -75,9 +75,9 @@ public class Parque {
         instancia.agregarAdministrador(admin);
 
         // ── Operadores (uno por zona) ──────────────────────────────────────
-        Operador op1 = new Operador("Carlos Lopez",  "2001001", 28, "EMP01", "Manana", "Z01");
+        Operador op1 = new Operador("Carlos Lopez",  "2001001", 28, "EMP01", "Mañana", "Z01");
         Operador op2 = new Operador("Maria Ruiz",    "2002002", 25, "EMP02", "Tarde",  "Z02");
-        Operador op3 = new Operador("Pedro Suarez",  "2003003", 30, "EMP03", "Manana", "Z03");
+        Operador op3 = new Operador("Pedro Suarez",  "2003003", 30, "EMP03", "Mañana", "Z03");
         Operador op4 = new Operador("Luisa Vargas",  "2004004", 27, "EMP04", "Tarde",  "Z04");
         Operador op5 = new Operador("Jorge Mora",    "2005005", 32, "EMP05", "Noche",  "Z05");
 

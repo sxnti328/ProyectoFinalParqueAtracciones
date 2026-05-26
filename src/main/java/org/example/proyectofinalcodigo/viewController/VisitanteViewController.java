@@ -37,6 +37,7 @@ public class VisitanteViewController {
 
     @FXML private Label lblMensaje;
     @FXML private Label lblNotificacion;
+    @FXML private Label lblAforo;
     @FXML private Label lblDescuentoInfo;
     @FXML private Label lblNumIntegrantes;
     @FXML private Label lblTicketMsg;
@@ -67,6 +68,7 @@ public class VisitanteViewController {
         );
 
         refrescarTabla();
+        actualizarAforo();
     }
 
     @FXML
@@ -86,6 +88,16 @@ public class VisitanteViewController {
         tablaVisitantes.setItems(
                 FXCollections.observableArrayList(controlador.getVisitantes()));
         tablaVisitantes.refresh();
+        actualizarAforo();
+    }
+
+    private void actualizarAforo() {
+        lblAforo.setText("Aforo: " + controlador.getAforoParque());
+        if (controlador.parqueLleno()) {
+            lblAforo.setStyle("-fx-text-fill: #ff3b30; -fx-font-size: 12px; -fx-font-weight: bold;");
+        } else {
+            lblAforo.setStyle("-fx-text-fill: white; -fx-font-size: 12px;");
+        }
     }
 
     private void llenarFormulario(Visitante v) {
@@ -135,9 +147,16 @@ public class VisitanteViewController {
             if (ok) {
                 limpiarCampos();
                 refrescarTabla();
+                lblMensaje.setStyle("-fx-text-fill: #374151; -fx-font-size: 11px;");
                 lblMensaje.setText("Visitante guardado correctamente.");
             } else {
-                lblMensaje.setText("Ya existe un visitante con ese documento.");
+                if (controlador.parqueLleno()) {
+                    lblMensaje.setStyle("-fx-text-fill: #dc2626; -fx-font-size: 11px;");
+                    lblMensaje.setText("El parque alcanzo su aforo maximo. No se pueden registrar mas visitantes.");
+                } else {
+                    lblMensaje.setStyle("-fx-text-fill: #374151; -fx-font-size: 11px;");
+                    lblMensaje.setText("Ya existe un visitante con ese documento.");
+                }
             }
         } catch (NumberFormatException e) {
             lblMensaje.setText("Edad debe ser entero y estatura debe ser número.");
