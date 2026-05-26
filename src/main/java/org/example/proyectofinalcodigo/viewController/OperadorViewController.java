@@ -77,12 +77,26 @@ public class OperadorViewController {
 
     private void refrescarAtracciones() {
         if (operadorActual == null) return;
+
+        Atraccion selAcceso   = cbAtraccionAcceso.getValue();
+        Atraccion selEstado   = cbAtraccionEstado.getValue();
+        Atraccion selRevision = cbAtraccionRevision.getValue();
+
         var lista = FXCollections.observableArrayList(
                 controlador.getAtraccionesDeZona(operadorActual.getIdZona()));
+
         tablaAtracciones.setItems(lista);
+        tablaAtracciones.refresh();
+
         cbAtraccionAcceso.setItems(lista);
         cbAtraccionEstado.setItems(lista);
         cbAtraccionRevision.setItems(lista);
+
+        for (Atraccion a : lista) {
+            if (selAcceso   != null && a.getId().equals(selAcceso.getId()))   cbAtraccionAcceso.setValue(a);
+            if (selEstado   != null && a.getId().equals(selEstado.getId()))   cbAtraccionEstado.setValue(a);
+            if (selRevision != null && a.getId().equals(selRevision.getId())) cbAtraccionRevision.setValue(a);
+        }
     }
 
     @FXML
