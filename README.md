@@ -1,2 +1,3 @@
 profe, porfavor un 5...
 prometo que aprendi mucho 🤞
+Por si acaso no funciona, el link para el diagrama lo pongo aqui https://drive.google.com/file/d/10yq_m0Cesxm0X_C9eGOTibwdhXyDwxIh/view.
