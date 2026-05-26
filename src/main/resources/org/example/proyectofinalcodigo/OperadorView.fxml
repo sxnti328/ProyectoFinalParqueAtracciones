@@ -3,107 +3,166 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.geometry.Insets?>
 
-<VBox spacing="10" prefWidth="850" prefHeight="680"
+<VBox spacing="0" prefWidth="950" prefHeight="720"
       xmlns="http://javafx.com/javafx/21"
       xmlns:fx="http://javafx.com/fxml/1"
       fx:controller="org.example.proyectofinalcodigo.viewController.OperadorViewController"
-      style="-fx-background-color: #f5f5f7;">
+      style="-fx-background-color: #f0f4f8;">
 
-    <padding><Insets top="12" right="16" bottom="12" left="16"/></padding>
-
-    <HBox spacing="12" alignment="CENTER_LEFT">
-        <Button text="&lt; Volver" onAction="#onVolver"/>
+    <!-- Barra de cabecera -->
+    <HBox spacing="12" alignment="CENTER_LEFT" prefHeight="54"
+          style="-fx-background-color: #5856d6; -fx-padding: 0 18 0 18;">
+        <Button text="&lt; Volver" onAction="#onVolver"
+                style="-fx-background-color: rgba(255,255,255,0.18); -fx-text-fill: white;
+                       -fx-background-radius: 8; -fx-cursor: hand; -fx-font-size: 12px;"/>
         <Label text="Panel Operador"
-               style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
+               style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: white;"/>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Label fx:id="lblInfoOperador"
+               style="-fx-text-fill: rgba(255,255,255,0.75); -fx-font-size: 12px;"/>
     </HBox>
 
-    <!-- seleccion de operador -->
-    <VBox spacing="6" style="-fx-background-color: white; -fx-padding: 10; -fx-background-radius: 8;">
-        <HBox spacing="10" alignment="CENTER_LEFT">
-            <Label text="Operador:"/>
-            <ComboBox fx:id="cbOperador" prefWidth="220" onAction="#onSeleccionarOperador"/>
-            <Label fx:id="lblInfoOperador" style="-fx-text-fill: #555;"/>
+    <!-- Contenido -->
+    <VBox spacing="10" VBox.vgrow="ALWAYS">
+        <padding><Insets top="14" right="16" bottom="14" left="16"/></padding>
+
+        <!-- Selector de operador -->
+        <VBox spacing="6"
+              style="-fx-background-color: white; -fx-padding: 12 14 12 14;
+                     -fx-background-radius: 10;
+                     -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.07), 6, 0, 0, 2);">
+            <HBox spacing="10" alignment="CENTER_LEFT">
+                <Label text="Operador:" style="-fx-font-weight: bold; -fx-text-fill: #374151;"/>
+                <ComboBox fx:id="cbOperador" prefWidth="230" onAction="#onSeleccionarOperador"/>
+                <Label fx:id="lblZona"
+                       style="-fx-text-fill: #5856d6; -fx-font-size: 11px; -fx-font-weight: bold;
+                              -fx-background-color: #ede9fe; -fx-padding: 3 9 3 9;
+                              -fx-background-radius: 6;"/>
+            </HBox>
+        </VBox>
+
+        <!-- Tabla de atracciones -->
+        <VBox spacing="6"
+              style="-fx-background-color: white; -fx-padding: 12 14 12 14;
+                     -fx-background-radius: 10;
+                     -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.07), 6, 0, 0, 2);">
+            <Label text="Atracciones de la zona"
+                   style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #111827;"/>
+            <TableView fx:id="tablaAtracciones" prefHeight="150">
+                <columns>
+                    <TableColumn fx:id="colNombreA"     text="Nombre"       prefWidth="160"/>
+                    <TableColumn fx:id="colTipoA"       text="Tipo"         prefWidth="130"/>
+                    <TableColumn fx:id="colEstadoA"     text="Estado"       prefWidth="120"/>
+                    <TableColumn fx:id="colVisitantesA" text="Visitantes"   prefWidth="90"/>
+                    <TableColumn fx:id="colEsperaA"     text="Espera (min)" prefWidth="100"/>
+                </columns>
+            </TableView>
+        </VBox>
+
+        <!-- Paneles de accion -->
+        <HBox spacing="10" VBox.vgrow="ALWAYS">
+
+            <!-- Validar acceso -->
+            <VBox spacing="7" HBox.hgrow="ALWAYS"
+                  style="-fx-background-color: white; -fx-padding: 12 14 12 14;
+                         -fx-background-radius: 10;
+                         -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.07), 6, 0, 0, 2);">
+                <Label text="Validar acceso"
+                       style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #111827;
+                              -fx-border-color: #0071e3; -fx-border-width: 0 0 0 3;
+                              -fx-padding: 0 0 0 8;"/>
+                <Label text="Documento visitante:"
+                       style="-fx-text-fill: #6b7280; -fx-font-size: 11px;"/>
+                <TextField fx:id="txtDocVisitante" promptText="Ej: 1234567"/>
+                <Label text="Atraccion:"
+                       style="-fx-text-fill: #6b7280; -fx-font-size: 11px;"/>
+                <ComboBox fx:id="cbAtraccionAcceso" maxWidth="Infinity"/>
+                <Button text="Validar acceso" onAction="#onValidarAcceso"
+                        maxWidth="Infinity"
+                        style="-fx-background-color: #0071e3; -fx-text-fill: white;
+                               -fx-background-radius: 8; -fx-cursor: hand;
+                               -fx-font-weight: bold;"/>
+                <Label fx:id="lblResultadoAcceso" wrapText="true"
+                       style="-fx-font-size: 11px; -fx-text-fill: #374151;"/>
+            </VBox>
+
+            <!-- Cambiar estado -->
+            <VBox spacing="7" HBox.hgrow="ALWAYS"
+                  style="-fx-background-color: white; -fx-padding: 12 14 12 14;
+                         -fx-background-radius: 10;
+                         -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.07), 6, 0, 0, 2);">
+                <Label text="Cambiar estado"
+                       style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #111827;
+                              -fx-border-color: #ff9f0a; -fx-border-width: 0 0 0 3;
+                              -fx-padding: 0 0 0 8;"/>
+                <Label text="Atraccion:"
+                       style="-fx-text-fill: #6b7280; -fx-font-size: 11px;"/>
+                <ComboBox fx:id="cbAtraccionEstado" maxWidth="Infinity"/>
+                <Label text="Nuevo estado:"
+                       style="-fx-text-fill: #6b7280; -fx-font-size: 11px;"/>
+                <ComboBox fx:id="cbNuevoEstado" maxWidth="Infinity"/>
+                <Label text="Motivo de cierre:"
+                       style="-fx-text-fill: #6b7280; -fx-font-size: 11px;"/>
+                <ComboBox fx:id="cbMotivo" maxWidth="Infinity"/>
+                <Button text="Cambiar estado" onAction="#onCambiarEstado"
+                        maxWidth="Infinity"
+                        style="-fx-background-color: #ff9f0a; -fx-text-fill: white;
+                               -fx-background-radius: 8; -fx-cursor: hand;
+                               -fx-font-weight: bold;"/>
+                <Label fx:id="lblResultadoEstado" wrapText="true"
+                       style="-fx-font-size: 11px; -fx-text-fill: #374151;"/>
+            </VBox>
+
+            <!-- Revision tecnica -->
+            <VBox spacing="7" HBox.hgrow="ALWAYS"
+                  style="-fx-background-color: white; -fx-padding: 12 14 12 14;
+                         -fx-background-radius: 10;
+                         -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.07), 6, 0, 0, 2);">
+                <Label text="Revision tecnica"
+                       style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #111827;
+                              -fx-border-color: #34c759; -fx-border-width: 0 0 0 3;
+                              -fx-padding: 0 0 0 8;"/>
+                <Label text="Atraccion:"
+                       style="-fx-text-fill: #6b7280; -fx-font-size: 11px;"/>
+                <ComboBox fx:id="cbAtraccionRevision" maxWidth="Infinity"/>
+                <Label text="Descripcion:"
+                       style="-fx-text-fill: #6b7280; -fx-font-size: 11px;"/>
+                <TextArea fx:id="txtDescripcion" prefHeight="65" wrapText="true"
+                          promptText="Describe el problema o la revision..."/>
+                <Button text="Registrar revision" onAction="#onRegistrarRevision"
+                        maxWidth="Infinity"
+                        style="-fx-background-color: #34c759; -fx-text-fill: white;
+                               -fx-background-radius: 8; -fx-cursor: hand;
+                               -fx-font-weight: bold;"/>
+                <Label fx:id="lblResultadoRevision" wrapText="true"
+                       style="-fx-font-size: 11px; -fx-text-fill: #374151;"/>
+            </VBox>
+
         </HBox>
-        <Label fx:id="lblZona" style="-fx-text-fill: #777; -fx-font-size: 11px;"/>
-    </VBox>
 
-    <!-- tabla de atracciones -->
-    <VBox spacing="6" style="-fx-background-color: white; -fx-padding: 10; -fx-background-radius: 8;">
-        <Label text="Atracciones de la zona:"
-               style="-fx-font-weight: bold; -fx-text-fill: #555;"/>
-        <TableView fx:id="tablaAtracciones" prefHeight="140">
-            <columns>
-                <TableColumn fx:id="colNombreA"     text="Nombre"     prefWidth="150"/>
-                <TableColumn fx:id="colTipoA"       text="Tipo"       prefWidth="120"/>
-                <TableColumn fx:id="colEstadoA"     text="Estado"     prefWidth="120"/>
-                <TableColumn fx:id="colVisitantesA" text="Visitantes" prefWidth="90"/>
-                <TableColumn fx:id="colEsperaA"     text="Espera"     prefWidth="80"/>
-            </columns>
-        </TableView>
-    </VBox>
-
-    <!-- acciones -->
-    <HBox spacing="10">
-
-        <VBox spacing="6" prefWidth="260"
-              style="-fx-background-color: white; -fx-padding: 10; -fx-background-radius: 8;">
-            <Label text="Validar acceso"
-                   style="-fx-font-weight: bold; -fx-text-fill: #555;"/>
-            <Label text="Documento visitante:"/>
-            <TextField fx:id="txtDocVisitante"/>
-            <Label text="Atraccion:"/>
-            <ComboBox fx:id="cbAtraccionAcceso" prefWidth="240"/>
-            <Button text="Validar" onAction="#onValidarAcceso"
-                    style="-fx-background-color: #0071e3; -fx-text-fill: white; -fx-background-radius: 6;"/>
-            <Label fx:id="lblResultadoAcceso" wrapText="true"
-                   style="-fx-font-size: 11px; -fx-text-fill: #555;"/>
+        <!-- Recarga de saldo -->
+        <VBox spacing="7"
+              style="-fx-background-color: white; -fx-padding: 12 14 12 14;
+                     -fx-background-radius: 10;
+                     -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.07), 6, 0, 0, 2);">
+            <Label text="Recargar saldo"
+                   style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #111827;
+                          -fx-border-color: #5856d6; -fx-border-width: 0 0 0 3;
+                          -fx-padding: 0 0 0 8;"/>
+            <HBox spacing="10" alignment="CENTER_LEFT">
+                <Label text="Documento:" style="-fx-text-fill: #6b7280; -fx-font-size: 12px;"/>
+                <TextField fx:id="txtDocSaldo" prefWidth="130" promptText="Documento"/>
+                <Label text="Monto ($):" style="-fx-text-fill: #6b7280; -fx-font-size: 12px;"/>
+                <TextField fx:id="txtMontoSaldo" prefWidth="130" promptText="Ej: 50000"/>
+                <Button text="Recargar" onAction="#onRecargarSaldo"
+                        style="-fx-background-color: #5856d6; -fx-text-fill: white;
+                               -fx-background-radius: 8; -fx-cursor: hand;
+                               -fx-font-weight: bold;"/>
+            </HBox>
+            <Label fx:id="lblResultadoSaldo"
+                   style="-fx-font-size: 11px; -fx-text-fill: #374151;"/>
         </VBox>
 
-        <VBox spacing="6" prefWidth="260"
-              style="-fx-background-color: white; -fx-padding: 10; -fx-background-radius: 8;">
-            <Label text="Cambiar estado"
-                   style="-fx-font-weight: bold; -fx-text-fill: #555;"/>
-            <Label text="Atraccion:"/>
-            <ComboBox fx:id="cbAtraccionEstado" prefWidth="240"/>
-            <Label text="Nuevo estado:"/>
-            <ComboBox fx:id="cbNuevoEstado" prefWidth="240"/>
-            <Label text="Motivo:"/>
-            <ComboBox fx:id="cbMotivo" prefWidth="240"/>
-            <Button text="Cambiar" onAction="#onCambiarEstado"
-                    style="-fx-background-color: #0071e3; -fx-text-fill: white; -fx-background-radius: 6;"/>
-            <Label fx:id="lblResultadoEstado" wrapText="true"
-                   style="-fx-font-size: 11px; -fx-text-fill: #555;"/>
-        </VBox>
-
-        <VBox spacing="6" prefWidth="260"
-              style="-fx-background-color: white; -fx-padding: 10; -fx-background-radius: 8;">
-            <Label text="Revision tecnica"
-                   style="-fx-font-weight: bold; -fx-text-fill: #555;"/>
-            <Label text="Atraccion:"/>
-            <ComboBox fx:id="cbAtraccionRevision" prefWidth="240"/>
-            <Label text="Descripcion:"/>
-            <TextArea fx:id="txtDescripcion" prefHeight="60" prefWidth="240" wrapText="true"/>
-            <Button text="Registrar" onAction="#onRegistrarRevision"
-                    style="-fx-background-color: #0071e3; -fx-text-fill: white; -fx-background-radius: 6;"/>
-            <Label fx:id="lblResultadoRevision" wrapText="true"
-                   style="-fx-font-size: 11px; -fx-text-fill: #555;"/>
-        </VBox>
-
-    </HBox>
-
-    <!-- recarga de saldo -->
-    <VBox spacing="6" style="-fx-background-color: white; -fx-padding: 10; -fx-background-radius: 8;">
-        <Label text="Recargar saldo de un visitante:"
-               style="-fx-font-weight: bold; -fx-text-fill: #555;"/>
-        <HBox spacing="8" alignment="CENTER_LEFT">
-            <Label text="Documento:"/>
-            <TextField fx:id="txtDocSaldo" prefWidth="130"/>
-            <Label text="Monto:"/>
-            <TextField fx:id="txtMontoSaldo" prefWidth="120"/>
-            <Button text="Recargar" onAction="#onRecargarSaldo"
-                    style="-fx-background-color: #34c759; -fx-text-fill: white; -fx-background-radius: 6;"/>
-        </HBox>
-        <Label fx:id="lblResultadoSaldo" style="-fx-font-size: 11px; -fx-text-fill: #555;"/>
     </VBox>
 
 </VBox>
